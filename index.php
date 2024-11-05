@@ -127,7 +127,7 @@ mysqli_close($conn);
 
         <form action="" method="post">
 
-            <label for="name">Name:</label>
+            <label for="name">Username:</label>
 
             <input type="text" name="name" value="" />
 			<p>

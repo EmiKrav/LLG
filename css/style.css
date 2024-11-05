@@ -1,0 +1,192 @@
+/* Global Styles */
+
+ 
+
+body{
+
+    background: #F9F9F9; /* Set HTML background color */
+
+    font: 14px "Lucida Grande";  /* Set global font size & family */
+
+    color: #464646; /* Set global text color */
+
+}
+
+ 
+
+p{
+
+    margin: 10px 0px 10px 0px; /* Add some padding to the top and bottom of the <p> tags */
+
+}
+
+ 
+
+/* Header */
+
+ 
+
+#header{
+
+    height: 45px; /* Set header height */
+
+    background: #464646; /* Set header background color */
+	
+
+}
+
+ 
+
+#header h3{
+
+    color: #FFFFF3; /* Set header heading(top left title ) color */
+
+    padding: 10px; /* Set padding, to center it within the header */
+
+    font-weight: normal; /* Set font weight to normal, default it was set to bold */
+
+
+}
+#header input {
+	
+	 color: #464646; /* Set header heading(top left title ) color */
+
+    font-weight: normal;
+	border: 2px solid #DFDFDF;
+	
+	padding: 5px;
+	margin-top: 10px;
+	margin-right: 10px;
+	
+}
+#header form {
+	
+	margin-top: 0px; 
+	padding: 0px 0px;
+	margin-bottom: 0px;
+	
+}
+
+#wrap{
+
+    background: #FFFFFF; /* Set content background to white */
+
+    width: 615px; /* Set the width of our content area */
+
+    margin: 0 auto; /* Center our content in our browser */
+
+    margin-top: 50px; /* Margin top to make some space between the header and the content */
+
+    padding: 10px; /* Padding to make some more space for our text */
+
+    border: 1px solid #DFDFDF; /* Small border for the finishing touch */
+
+    text-align: center; /* Center our content text */
+	
+
+}
+
+
+ 
+
+form{
+	padding: 20px 200px;
+	text-align: left;
+	margin: 0 auto;
+}
+
+#btn{
+background: #F9F9F9;
+	border: 2px solid #DFDFDF; 
+	margin-top: 5px;
+	padding: 5px;
+	}
+
+
+input{
+
+    font: normal 16px Georgia; /* Set font for our input fields */
+
+    border: 1px solid #DFDFDF; /* Small border around our input field */
+
+    padding: 8px; /* Add some more space around our text */
+	
+	
+
+}
+#dogPic{
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  background: blue;
+  top: 50px;
+  left: 50px;
+  display: block;
+  font: 14px "Lucida Grande";  /* Set global font size & family */
+color: white; /* Set global text color */
+text-align: center;
+user-select: none;
+}
+#badPic{
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  background: blue;
+  top: 50px;
+  left: 50px;
+  display: block;
+   font: 14px "Lucida Grande";  /* Set global font size & family */
+color: white; /* Set global text color */
+text-align: center;
+user-select: none;
+}
+#badPic2{
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  background: blue;
+  top: 50px;
+  left: 50px;
+  display: block;
+   font: 14px "Lucida Grande";  /* Set global font size & family */
+color: white; /* Set global text color */
+text-align: center;
+user-select: none;
+}
+#instruct{
+	text-align: center;
+}
+
+
+strong {
+    display: inline-block;
+    width: 20px;
+    border: 1px solid #000;
+    text-align: center;
+	
+	user-select: none;
+}
+
+#box {
+  width: 200px;
+   height: 30px;
+  border: 5px solid green;
+  text-align: center;
+  align-content: center;
+  top: 100%;
+  left: 50%;
+  position: absolute;
+  top: 300px; left: 500px;
+}
+#statusmsg{
+
+    font-size: 12px; /* Set message font size */
+
+    padding: 3px; /* Some padding to make some more space for our text */
+
+    background: #EDEDED; /* Add a background color to our status message */
+
+    border: 1px solid #DFDFDF; /* Add a border arround our status message */
+
+}
+
