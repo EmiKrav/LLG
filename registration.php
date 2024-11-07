@@ -38,26 +38,23 @@ if ($conn->connect_error) {
 		 
 $msg = null;
  
-if(isset($_POST['name']) && !empty($_POST['name']) AND isset($_POST['email']) && !empty($_POST['email'])){
-
-
-
-
+if(isset($_POST['name']) && !empty($_POST['name']) AND isset($_POST['email']) && !empty($_POST['email'])AND isset($_POST['userpassword']) && !empty($_POST['userpassword'])){
     $name = $_POST['name']; 
-
+	$userpassword = $_POST['userpassword'];
     $email = $_POST['email'];
+	$pattern = '/^(?=.*[a-z])(?=.*\d).{8,}$/';
 	 if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
         $msg = 'Only letters and white space allowed';
     }
 	else if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 	 $msg = 'The email you have entered is invalid, please try again.';
-
+	}
+else if (!preg_match($pattern, $userpassword)) {
+     $msg = 'Invalid Password. Password minimum length should be 8, at least one lowercase letter, and one digit.';
 
 }else{
 
 	$hash = rand(0,1000); 
-
-$password = rand(1000,5000); 
 $exist= "SELECT COUNT(username) as total FROM users WHERE email = '$email'";
 
 $result2 = mysqli_query($conn, $exist);
@@ -68,7 +65,7 @@ if (!$result2) {
 }
 
 if ($row['total'] == 0){
-$query = "INSERT INTO users (username, password, email, hash) VALUES ('$name', '$password', '$email', '$hash')";
+$query = "INSERT INTO users (username, password, email, hash) VALUES ('$name', '$userpassword', '$email', '$hash')";
 
 $result = mysqli_query($conn, $query);
 
@@ -111,7 +108,6 @@ else{
 
 mysqli_close($conn);
 }
-
 }
 
              
@@ -121,7 +117,7 @@ mysqli_close($conn);
 
     
 
-        <h3>Signup Form</h3>
+        <h3>Register</h3>
 
         
 
@@ -142,10 +138,16 @@ mysqli_close($conn);
 ?>
 
         <form action="" method="post">
-
+			<p>
             <label for="name">Username:</label>
 
             <input type="text" name="name" value="" />
+			</p>
+			<p>
+            <label for="userpassword">Password:</label>
+
+            <input type="text" name="userpassword" value="" />
+			</p>
 			<p>
             <label for="email">Email:</label>
 

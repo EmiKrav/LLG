@@ -41,6 +41,9 @@
 				 </form>
  <h3 style="float: right">User</h3>
     </div>
+	<h1 style="text-align: center">Language learning games </h1>
+	<img src="mainpic.jpg" alt="Looking at words with magnifying glass" width="100%" height="430">
+
      
 
    
