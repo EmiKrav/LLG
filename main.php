@@ -26,6 +26,18 @@
         function buttongame() {
            header('Location: game.php');
         }
+		  if(array_key_exists('button2game', $_POST)) {
+            button2game();
+        }
+        function button2game() {
+           header('Location: game2.php');
+        }
+		  if(array_key_exists('wordsreview', $_POST)) {
+            wordsreview();
+        }
+        function wordsreview() {
+           header('Location: words.php');
+        }
 
 ?>
 
@@ -34,7 +46,11 @@
 		 <form action="" method="post">
 
 			 <input style="float: left;margin-left: 20px;" type="submit" id="buttonheader" name="buttongame"
-                 value="Game"/>
+                 value="Cube Game"/>
+			 <input style="float: left;margin-left: 20px;" type="submit" id="buttonheader" name="button2game"
+                 value="Ship Game"/>
+				 <input style="float: left;margin-left: 20px;" type="submit" id="buttonheader" name="wordsreview"
+                 value="Learn Words"/>
 
 			 <input style="float: right;margin-right: 20px;" type="submit" id="buttonheader" name="button1"
                  value="Log Out" />

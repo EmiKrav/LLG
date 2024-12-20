@@ -39,27 +39,21 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 $msg = null;
-if(isset($_POST['name']) && !empty($_POST['name']) AND isset($_POST['email']) && !empty($_POST['email']) AND isset($_POST['userpassword']) && !empty($_POST['userpassword'])){
+if(isset($_POST['email']) && !empty($_POST['email']) AND isset($_POST['userpassword']) && !empty($_POST['userpassword'])){
 
-
-
-
-    $name = $_POST['name']; 
 
     $email = $_POST['email'];
 	$userpassword =$_POST['userpassword'];
 	$pattern = '/^(?=.*[a-z])(?=.*\d).{8,}$/';
-	 if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-        $msg = 'Invalid Username';
-    }
-	else if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+ if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 	 $msg = 'The email you have entered does not exist';
 }
 else if (!preg_match($pattern, $userpassword)) {
      $msg = 'Invalid Password';
 }else{
 
-$exist= "SELECT account as total, hash as ident, id as ind FROM users WHERE email = '$email' AND username = '$name' AND password = '$userpassword'";
+$exist= "SELECT account as total, hash as ident, id as ind FROM users WHERE email = '$email'  AND password = '$userpassword'";
 
 $result2 = mysqli_query($conn, $exist);
 $row = mysqli_fetch_assoc($result2);
@@ -115,11 +109,6 @@ mysqli_close($conn);
 ?>
 
         <form action="" method="post">
-<p>
-            <label for="name">Username:</label>
-
-            <input type="text" name="name" value="" />
-				</p>
 			<p>
             <label for="email">Email:</label>
 

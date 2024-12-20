@@ -1,0 +1,21 @@
+<html>
+
+<head>
+
+    <title>Sign up complete</title>
+	<body>
+
+    <div id="header">
+
+        <h3>Sign up complete, activation code: </h3>
+    </div>
+    <h3 id="url"></h3>
+
+    <script>
+            let gfg = window.location.href;
+			const myArray = gfg.split("=")[2];
+            document.getElementById("url").innerHTML = myArray;
+    </script>
+</body>
+
+</html>

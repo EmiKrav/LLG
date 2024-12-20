@@ -72,6 +72,7 @@ var words =
     <?php echo json_encode($words); ?>;
 var translations = 
     <?php echo json_encode($translations); ?>;
+var chosemnamount = words.length;
      	
 // Display the array elements
 //for(var i = 0; i < words.length; i++){
@@ -83,13 +84,13 @@ var nr = 0;
 	var x = words[nr];
 	var y = translations[nr];
 var letter = Math.floor(Math.random() * x.length);
-var dog = document.getElementById("dogPic");
-var dog2 = document.getElementById("box");
+var correct = document.getElementById("dogPic");
+var box = document.getElementById("box");
 
 var bad = document.getElementById("badPic");
 var bad2 = document.getElementById("badPic2");
 	
-	dog.style.display = "none";
+	correct.style.display = "none";
 	box.style.display = "none";
 	bad.style.display = "none";
 	bad2.style.display = "none";
@@ -98,14 +99,14 @@ function displayblock(){
 	var start =  document.getElementsByTagName('input')[1];
 	instruct.innerHTML = y;
 	start.style.display = "none";
-	if (dog.style.display == "none"){
-	dog.innerHTML = x[letter];
-	dog.style.display = "block";
+	if (correct.style.display == "none"){
+	correct.innerHTML = x[letter];
+	correct.style.display = "block";
 	reset();
 	}
 if (bad.style.display == "none"){
 	
-	alb = alb.replace(dog.innerHTML,'');
+	alb = alb.replace(correct.innerHTML,'');
 	bad.innerHTML = alb[Math.floor(Math.random() * alb.length)];
 	alb = alb.replace(bad.innerHTML,'');
 	bad.style.display = "block";
@@ -131,7 +132,7 @@ if (box.style.display == "none"){
 	}
 
 	var moving = false;
-dog.addEventListener("mousedown", initialClick, false);
+correct.addEventListener("mousedown", initialClick, false);
 bad.addEventListener("mousedown", initialClick, false);
 bad2.addEventListener("mousedown", initialClick, false);
 function move(e){
@@ -144,7 +145,13 @@ if (newX > 100 && newX < 1100){
 if (newY > 100 && newY < 500){
   image.style.top = newY + "px";
 }
-  
+
+  if (newX <= 100 || newX >= 1100){
+	initialClick();
+}
+  if (newY <= 100 || newY >= 500){
+	initialClick();
+}
   
 }
 function resetall(){
@@ -152,9 +159,9 @@ function resetall(){
 	resetbad();
 	resetbad2();
 	letter = Math.floor(Math.random() * x.length);
-	dog.innerHTML = x[letter];
+	correct.innerHTML = x[letter];
 	alb = alphabet;
-	alb = alb.replace(dog.innerHTML,'');
+	alb = alb.replace(correct.innerHTML,'');
 	bad.innerHTML = alb[Math.floor(Math.random() * alb.length)];
 	alb = alb.replace(bad.innerHTML,'');
 	bad2.innerHTML = alb[Math.floor(Math.random() * alb.length)];
@@ -169,33 +176,45 @@ function resetall(){
 	  document.getElementById("box").innerHTML += "_";
   }
 	}
+	if (doElsCollide(correct, box)){
+	  resetall();
+	}
+	if (doElsCollide(bad, box)){
+	  resetall();
+	}
+	if (doElsCollide(bad2, box)){
+	  resetall();
+	}
 	bad.style.display = "block";
 	bad2.style.display = "block";	
-	dog.style.display = "block";
+	correct.style.display = "block";
 }
 function reset(){
-	dog.style.left = Math.floor(Math.random() * 1100) + 100 + "px";
-	dog.style.top = Math.floor(Math.random() * 400) + 120 + "px";
+	correct.style.left = Math.floor(Math.random() * (1080 - 120 + 1) + 120) + "px";
+	correct.style.top = Math.floor(Math.random() * (480 - 120 + 1) + 120) + "px";
+	
 }
 function resetbad(){
 	
-	bad.style.left = Math.floor(Math.random() * 1100) + 100 + "px";
-	bad.style.top = Math.floor(Math.random() * 400) + 120 + "px";
+	bad.style.left = Math.floor(Math.random() * (1080 - 120 + 1) + 120) + "px";
+	bad.style.top = Math.floor(Math.random() * (480 - 120 + 1) + 120) + "px";
+	
 }
 function resetbad2(){
-	bad2.style.left = Math.floor(Math.random() * 1100) + 100 + "px";
-	bad2.style.top = Math.floor(Math.random() * 400) + 120 + "px";
+	bad2.style.left = Math.floor(Math.random() * (1080 - 120 + 1) + 120) + "px";
+	bad2.style.top = Math.floor(Math.random() * (480 - 120 + 1) + 120) + "px";
+	
 }
 function mouseUp() {
-  if (doElsCollide(dog, dog2)){
+  if (doElsCollide(correct, box)){
 	  reset();
-	  dog.style.display = "none";
+	  correct.style.display = "none";
 	   document.getElementById("box").innerHTML = "Correct!";
 	  setTimeout(() => {
 		   document.getElementById("box").innerHTML = x;
 		   resetall();
 }, 2000);
-if (nr < words.length-1){
+if (nr < chosemnamount - 1){
 nr +=1;
 x = words[nr];
 y = translations[nr];
@@ -207,7 +226,7 @@ else{
  setTimeout(() => {
 	 box.style.display = "none";
 	 instruct.style.display = "none";
-	 dog.style.display = "none";
+	 correct.style.display = "none";
 	bad.style.display = "none";
 	bad2.style.display = "none";
  document.getElementsByTagName('input')[0].click();
@@ -215,7 +234,7 @@ else{
 
 }
   }
-    if (doElsCollide(bad, dog2)){
+    if (doElsCollide(bad, box)){
 	  resetbad();
 	  bad.style.display = "none";
 	   var xx =   document.getElementById("box").innerHTML;
@@ -225,7 +244,7 @@ else{
 }, 2000);
 
   }
-    if (doElsCollide(bad2, dog2)){
+    if (doElsCollide(bad2, box)){
 	  resetbad2();
 	  bad2.style.display = "none";
 	 var xx =   document.getElementById("box").innerHTML;
@@ -252,16 +271,16 @@ function initialClick(e) {
   document.addEventListener("mousemove", move, false);
 
 }
-doElsCollide = function(dog, dog2) {
-    dog.offsetBottom = dog.offsetTop + dog.offsetHeight;
-    dog.offsetRight = dog.offsetLeft + dog.offsetWidth;
-    dog2.offsetBottom = dog2.offsetTop + dog2.offsetHeight;
-    dog2.offsetRight = dog2.offsetLeft + dog2.offsetWidth;
+doElsCollide = function(correct, box) {
+    correct.offsetBottom = correct.offsetTop + correct.offsetHeight;
+    correct.offsetRight = correct.offsetLeft + correct.offsetWidth;
+    box.offsetBottom = box.offsetTop + box.offsetHeight;
+    box.offsetRight = box.offsetLeft + box.offsetWidth;
     
-    return !((dog.offsetBottom < dog2.offsetTop) ||
-             (dog.offsetTop > dog2.offsetBottom) ||
-             (dog.offsetRight < dog2.offsetLeft) ||
-             (dog.offsetLeft > dog2.offsetRight))
+    return !((correct.offsetBottom < box.offsetTop) ||
+             (correct.offsetTop > box.offsetBottom) ||
+             (correct.offsetRight < box.offsetLeft) ||
+             (correct.offsetLeft > box.offsetRight))
 }
 
 
