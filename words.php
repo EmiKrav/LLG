@@ -22,23 +22,8 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 $svarbu = 0;
 $idintifikacija = 2;
-$sometink = "Me";
-//$exist= "SELECT word as word, translation as translation FROM words";
-$exist= "SELECT word as 'word', translation as 'translation', word_tags.word_id as 'id' , tags.tag_id as 'id2' 
-FROM ((words
-INNER JOIN word_tags ON words.word_id=word_tags.word_id)
-INNER JOIN tags ON tags.tag_id = word_tags.tag_id)
-WHERE IF($svarbu=1, tags.tag_id = $idintifikacija, tags.tag_id>0);";
+$sometink = "";
 
-$result2 = mysqli_query($conn, $exist);
-// while($row = mysqli_fetch_array($result2, MYSQLI_ASSOC)){
-	// $words[] = $row['word'];
-// $translations[] = $row['translation'];
-// }
-
-if (!$result2) {
-    echo "Error: " . mysqli_error($conn);
-}
 $exist2= "SELECT tag_name as tag_name FROM tags";
 
 $result3 = mysqli_query($conn, $exist2);
@@ -62,8 +47,10 @@ if (!$result3) {
 ?>
     <div id="header"style="clear: both">
 	
-
-       
+<form method="POST">
+       <input type="text" name="forchecking" id="forchecking" value="" display:none />
+	   <input type="submit" name="forcheckingb" id="forcheckingb"/>
+</form>
  <form action="" method="post">
 			 <input style="float: left; margin-left: 20px;" type="submit" id="buttonheader" name="button1"
                  value="Back" />
@@ -71,7 +58,7 @@ if (!$result3) {
 				 <h3 style="float;text-align-last: center;user-select: none;">Words</h3>
 				 </div>
 				 
-				 <form method="GET">
+				
 		<div class="dropdown">
   <button onclick="myFunction()" class="dropbtn" id="pavad">Category</button>
  
@@ -79,48 +66,22 @@ if (!$result3) {
  
     <input type="text"  class="input" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
 	<script>
-var tags = 
-    <?php echo json_encode($tags); ?>;
-	var words = 
-    <?php echo json_encode($words); ?>;
-	 for (i = 0; i < tags.length; i++) {
-const para = document.createElement("a");
-const node = document.createTextNode(tags[i]);
-para.appendChild(node);
-para.onclick = function() { ShowOld(this.innerText); };
-para.href = "#";
-para.setAttribute("id", "a0");
-const element = document.getElementById("myDropdown");
-element.appendChild(para);
-	 }
-</script>
-  </div>
- 
-</div>
-</form>
-
-<script>
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn') && !event.target.matches('.input') ) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
-function ShowOld(ind) {
+function ShowOld(dispname) {
 	
   var pav = document.getElementById("pavad");
-  pav.innerText =  ind;
-  //document.getElementById("a0").value = "Relationships";
+  pav.innerText =  dispname;
+    document.getElementById("forchecking").value = dispname;
+	document.getElementById("forcheckingb").click();
    <?php
-  $svarbu = 0;
 $conn = new mysqli($servername, $username, $password, $dbname);
-$sometink = $tags[rand(0,1)];
+$sometink = $_POST['forchecking'];
+if (!empty($sometink)){
+	 $svarbu = 1;
+}
+else{
+	$svarbu = 0;
+}
+
 $tagoid = "SELECT tag_id as 'tag_id', tag_name as 'tag_name' FROM `tags` WHERE `tag_name` = '$sometink'";
  $result3 = mysqli_query($conn, $tagoid);
  while($row2 = mysqli_fetch_array($result3, MYSQLI_ASSOC)){
@@ -132,15 +93,56 @@ INNER JOIN word_tags ON words.word_id=word_tags.word_id)
 INNER JOIN tags ON tags.tag_id = word_tags.tag_id)
 WHERE IF($svarbu=1, tags.tag_id = $idintifikacija, tags.tag_id>0);";
 
-$result2 = mysqli_query($conn, $exist);
-while($row = mysqli_fetch_array($result2, MYSQLI_ASSOC)){
+$resultjs2 = mysqli_query($conn, $exist);
+while($row = mysqli_fetch_array($resultjs2, MYSQLI_ASSOC)){
 	$words[] = $row['word'];
 $translations[] = $row['translation'];
 
  }
-   mysqli_close($conn);
+  mysqli_close($conn);
  ?>;
-//window.location.reload();
+  }
+</script>
+	<script>
+var tags = 
+    <?php echo json_encode($tags); ?>;
+	var words = 
+    <?php echo json_encode($words); ?>;
+	 for (i = 0; i < tags.length; i++) {
+const para = document.createElement("a");
+const node = document.createTextNode(tags[i]);
+para.appendChild(node);
+para.onclick = function() {
+	ShowOld(this.innerText);
+ };
+ if (<?php echo json_encode($sometink); ?> != null){
+ document.getElementById("pavad").innerText = <?php echo json_encode($sometink); ?>;
+ }
+const element = document.getElementById("myDropdown");
+element.appendChild(para);
+	 }
+</script>
+  </div>
+ 
+</div>
+
+
+<script>
+var change = false;
+window.onclick = function(event) {
+  if (
+  !event.target.matches('.dropbtn') 
+	  && !event.target.matches('.input')
+)  {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+     if (openDropdown.classList.contains('show')) {
+       openDropdown.classList.remove('show');
+     }
+    }
+  }
 }
 function myFunction() {
   document.getElementById("myDropdown").classList.toggle("show");
@@ -162,6 +164,7 @@ function filterFunction() {
     }
   }
 }
+
 </script>
 <table style="width:100%">
   <tr> 
@@ -171,7 +174,8 @@ function filterFunction() {
   </tr>
   <tr>
    <td><?php for ($x = 1; $x <= count($words); $x++) {
-  echo "$x <br>";}?> 
+  echo "$x <br>";}
+  ?> 
   </td>
     <td><?php foreach ($words as $x) {
   echo "$x <br>";}?> 
@@ -185,4 +189,5 @@ function filterFunction() {
 
 	
 </body>
+
 </html>

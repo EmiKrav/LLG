@@ -94,6 +94,8 @@ var bad2 = document.getElementById("badPic2");
 	box.style.display = "none";
 	bad.style.display = "none";
 	bad2.style.display = "none";
+	
+var klaidukiek=0;
 function displayblock(){
 	var instruct = document.getElementById("instruct");
 	var start =  document.getElementsByTagName('input')[1];
@@ -221,7 +223,7 @@ y = translations[nr];
 }
 else{
 	
-		instruct.innerHTML = "You did it! Good job";
+		instruct.innerHTML = "You did it! Good job"+"<br />"+"You made" +"<br />"+klaidukiek+"<br />"+" mistakes!";
 	document.getElementById("box").innerHTML = "Complete";
  setTimeout(() => {
 	 box.style.display = "none";
@@ -239,6 +241,7 @@ else{
 	  bad.style.display = "none";
 	   var xx =   document.getElementById("box").innerHTML;
 	  document.getElementById("box").innerHTML = "Wrong!";
+	  klaidukiek++;
 	  setTimeout(() => {
 		    document.getElementById("box").innerHTML = xx;
 }, 2000);
@@ -249,6 +252,7 @@ else{
 	  bad2.style.display = "none";
 	 var xx =   document.getElementById("box").innerHTML;
 	  document.getElementById("box").innerHTML = "Wrong!";
+	  klaidukiek++;
 	  setTimeout(() => {
 		    document.getElementById("box").innerHTML = xx;
 }, 2000);	
@@ -290,6 +294,12 @@ doElsCollide = function(correct, box) {
      
 
    
-
+ <script type="text/javascript">
+        function preventBack() {
+            window.history.forward();
+        }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
 
 </html>

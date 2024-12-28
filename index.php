@@ -14,7 +14,6 @@ session_start();
 </head>
 
 <body>
-
     <div id="header">
 
         <h3>Login</h3>
@@ -130,5 +129,5 @@ mysqli_close($conn);
 
     </div>
 </body>
-
+ 
 </html>

@@ -69,9 +69,16 @@ if (!$result2) {
 	<div id="wordbox2" ></div>
 	<div id="wordbox3" ></div>
 	<div id="wordbox4" ></div>
-	<input type="text" id="mytext" value="">
+	<input type="text" maxlength="1" id="mytext" value="">
 	<h1 id="instruct">How to play: <br> Type your answer (A/B/C) in the grey box<br> Move ship with arrow keys <br> Shoot asteroids with space key</h1>
 </body>
+ <script type="text/javascript">
+        function preventBack() {
+            window.history.forward();
+        }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
 	<script>
 var y = "<?php echo $sk?>";
 var words = 
@@ -92,6 +99,7 @@ var ca2 = false;
 var ca3 = false;
 	var x = words[wordc];
 	var y = translations[wordc];
+var teisraid ="";
 
 
 var ship = document.getElementById("cosship");
@@ -107,6 +115,9 @@ var vert1 = document.getElementById("wordbox3");
 var vert2 = document.getElementById("wordbox4");
 
 var tekstas = document.getElementById("mytext");
+tekstas.value="";
+var tekstasv = tekstas.value;
+var paspausta = false;
 
 	ship.style.display = "none";
 	ast1.style.display = "none";
@@ -125,6 +136,8 @@ function displayblock(){
 	vert1.style.display = "block";
 	vert2.style.display = "block";
 tekstas.style.display = "block";
+tekstas.focus();
+paspausta = true;
 	if (zodis.style.display == "none"){
 	zodis.innerHTML = y;
 	zodis.style.display = "block";
@@ -169,18 +182,43 @@ function resetaster3(){
 	ast3.style.top = 80 + "px";
 }
 document.addEventListener('keydown', moving);
+
 function moving(e) {
+	
 	 let rect = ship.getBoundingClientRect();
  if(e.keyCode == 37 && rect.x > 300) {
-	
   ship.style.left =  rect.x - 10 + "px";
+  if (paspausta == true){
+	  tekstas.disabled = true; 
+	  paspausta = false;
+	 setTimeout(() => {
+  tekstas.disabled = false; 
+}, 10);
     }
+ }
 	else if(event.keyCode == 39 && rect.x < 900) {
+		
   ship.style.left =  rect.x + 10 + "px";
+  
+	   if (paspausta == true){
+	  tekstas.disabled = true; 
+	  paspausta = false;
+	 setTimeout(() => {
+  tekstas.disabled = false; 
+}, 10);
+    }
     }
 	else if(event.keyCode == 32) {
-	var x = document.getElementById("mytext").value;
-	if ((x == "A" || x == "B" || x == "C") && nr == 0){
+		
+	   if (paspausta == true){
+	  tekstas.disabled = true; 
+	  paspausta = false;
+	 setTimeout(() => {
+  tekstas.disabled = false; 
+}, 10);
+    }
+	tekstasv = tekstas.value;
+	if ((tekstasv == "A" || tekstasv == "B" || tekstasv == "C") && nr == 0){
 	nr = 1;
   bullet.style.display = "block";
   bullet.style.left =  rect.x  + 5 + "px";
@@ -188,8 +226,18 @@ function moving(e) {
 	movebullet();
 	}
     }
-
 }
+
+// tekstas.addEventListener('focus', function(){
+  // alert('Focused');
+// });
+tekstas.onclick = function () {
+	paspausta = true;
+}
+                   // if (tekstas.value.length == 1){
+					   // alert("Button Clicked");
+				   // }
+                // }
 function movebullet(){
 	 let id = null;
 	  clearInterval(null);
@@ -202,7 +250,7 @@ function movebullet(){
 	  nr = 0;
 	  bullet.style.display = "none";
     }
-	   else if (doElsCollide(bullet, ast1)){
+	   else if (doElsCollide(bullet, ast1) && teisraid == tekstasv){
 	   clearInterval(id);
 	  nr = 0;
 	  ca = true;
@@ -210,7 +258,7 @@ function movebullet(){
 	   ast1.style.display = "none";
 	   resetasters();
 	   }
-	    else if (doElsCollide(bullet, ast2)){
+	    else if (doElsCollide(bullet, ast2) && teisraid == tekstasv){
 	   clearInterval(id);
 	  nr = 0;
 	   ca2 = true;
@@ -218,7 +266,7 @@ function movebullet(){
 	   ast2.style.display = "none";
 	   resetasters();
 	   }
-	      else if (doElsCollide(bullet, ast3)){
+	      else if (doElsCollide(bullet, ast3) && teisraid == tekstasv){
 	   clearInterval(id);
 	  nr = 0;
 	   ca3 = true;
@@ -381,6 +429,7 @@ fruits.push(i)
 		fruits.splice(fruits.indexOf(wordc) , 1);
 if (ats == 0){
 	vert0.innerHTML = "A-" + x;
+	teisraid="A";
 }
 else{
 	var rw = fruits[Math.floor(Math.random() * fruits.length)];
@@ -389,6 +438,7 @@ else{
 }
 if (ats == 1){
 	vert1.innerHTML = "B-" + x;
+	teisraid="B";
 }
 else{
 	var rw = fruits[Math.floor(Math.random() * fruits.length)];
@@ -397,6 +447,7 @@ else{
 }
 if (ats == 2){
 	vert2.innerHTML = "C-" + x;
+	teisraid="C";
 }
 else{
 	var rw = fruits[Math.floor(Math.random() * fruits.length)];

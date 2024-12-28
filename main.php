@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 
+
 <html>
 
 <head>
@@ -14,7 +15,7 @@
            <?php 
 
     
-  if(array_key_exists('button1', $_POST)) {
+		if(array_key_exists('button1', $_POST)) {
             button1();
         }
         function button1() {
@@ -64,5 +65,5 @@
 
    
 </body>
-
+  
 </html>

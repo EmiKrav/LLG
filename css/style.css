@@ -382,3 +382,10 @@ user-select: none;
 .dropdown a:hover {background-color: grey;}
 
 .show {display: block;}
+
+#forchecking{
+	display: none;
+}
+#forcheckingb{
+	display: none;
+}
