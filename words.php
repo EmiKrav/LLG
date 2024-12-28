@@ -48,7 +48,7 @@ if (!$result3) {
     <div id="header"style="clear: both">
 	
 <form method="POST">
-       <input type="text" name="forchecking" id="forchecking" value="" display:none />
+       <input type="text" name="forchecking" id="forchecking" value=""  />
 	   <input type="submit" name="forcheckingb" id="forcheckingb"/>
 </form>
  <form action="" method="post">
@@ -102,8 +102,6 @@ $translations[] = $row['translation'];
   mysqli_close($conn);
  ?>;
   }
-</script>
-	<script>
 var tags = 
     <?php echo json_encode($tags); ?>;
 	var words = 
@@ -121,13 +119,7 @@ para.onclick = function() {
 const element = document.getElementById("myDropdown");
 element.appendChild(para);
 	 }
-</script>
-  </div>
- 
-</div>
 
-
-<script>
 var change = false;
 window.onclick = function(event) {
   if (
@@ -166,6 +158,9 @@ function filterFunction() {
 }
 
 </script>
+</div>
+ 
+</div>
 <table style="width:100%">
   <tr> 
   <th >ID</th>

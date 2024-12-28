@@ -61,7 +61,6 @@ p{
 
     font-weight: normal; /* Set font weight to normal, default it was set to bold */
 
-
 }
 #header input {
 	
@@ -73,6 +72,7 @@ p{
 	padding: 5px;
 	margin-top: 10px;
 	margin-right: 10px;
+	text-align: center;
 	
 }
 #header form {
@@ -82,6 +82,7 @@ p{
 	margin-bottom: 0px;
 	
 }
+
 
 #wrap{
 
@@ -96,27 +97,35 @@ p{
     padding: 10px; /* Padding to make some more space for our text */
 
     border: 1px solid #DFDFDF; /* Small border for the finishing touch */
+	text-align: center;
+	
+}
+#wrap2{
+
+   
+    background: #FFFFFF; /* Set content background to white */
+
+    width: 615px; /* Set the width of our content area */
+
+    margin: 0 auto; /* Center our content in our browser */
+
+    margin-top: 50px; /* Margin top to make some space between the header and the content */
+
+    padding: 10px; /* Padding to make some more space for our text */
+
+    border: 1px solid #DFDFDF; /* Small border for the finishing touch */
 
     text-align: center; /* Center our content text */
-	
-
 }
-
 
  
-
-form{
-	padding: 20px 200px;
-	text-align: left;
-	margin: 0 auto;
-}
 
 #btn{
 background: #F9F9F9;
 	border: 2px solid #DFDFDF; 
 	margin-top: 5px;
 	padding: 5px;
-	}
+}
 
 
 input{
@@ -330,7 +339,7 @@ user-select: none;
 .dropbtn {
   background-color: #505050;
   color: white;
-  padding: 16px;
+  padding: 10px;
   font-size: 16px;
   border: none;
   cursor: pointer;
@@ -346,10 +355,10 @@ user-select: none;
 #myInput {
   box-sizing: border-box;
   background-image: url('searchicon.png');
-  background-position: 24px 12px;
+  background-position: 14px 12px;
   background-repeat: no-repeat;
   font-size: 16px;
-  padding: 24px 30px 22px 45px;
+  padding: 14px 20px 12px 25px;
   border: none;
   border-bottom: 1px solid #ddd;
 }
@@ -359,7 +368,7 @@ user-select: none;
 .dropdown {
   position: relative;
   display: inline-block;
-   padding: 14px 20px 12px 45px;
+   padding: 14px 1px 10px 1px;
 }
 
 .dropdown-content {
@@ -388,4 +397,7 @@ user-select: none;
 }
 #forcheckingb{
 	display: none;
+}
+#wordamount{
+	display: block; 
 }

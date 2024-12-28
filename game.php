@@ -20,18 +20,18 @@ $password = "alakard13";
 $dbname = "llg";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
+$sk=0;
+$svarbu = 0;
+$idintifikacija = 2;
+$sometink = "";
+$chosemnamount = 0;
+$exist2= "SELECT tag_name as tag_name FROM tags";
 
-$exist= "SELECT word as word, translation as translation FROM words ORDER BY RAND()";
-
-$result2 = mysqli_query($conn, $exist);
-while($row = mysqli_fetch_array($result2, MYSQLI_ASSOC)){
-	$words[] = $row['word'];
-$translations[] = $row['translation'];
+$result3 = mysqli_query($conn, $exist2);
+while($row2 = mysqli_fetch_array($result3, MYSQLI_ASSOC)){
+	$tags[] = $row2['tag_name'];
 }
 
-if (!$result2) {
-    echo "Error: " . mysqli_error($conn);
-}
 //else{
 	//printf ("%s %s %s\n", $words[1], $translations[1], $sk);
 
@@ -65,6 +65,143 @@ if (!$result2) {
 	<div id="badPic"></div>
 	<div id="badPic2"></div>
 	<h1 id="instruct">How to play: <br> Drag cube with correct letter to the box </h1>
+			<form method="POST" >
+		<p>
+		
+	 <label for="wordamount" id="wordamountl">Words:</label>
+	 </p>
+		<input type="number" id="wordamount" name="wordamount" min="1" max="100" value="0">
+       <input type="text" name="forchecking" id="forchecking" value=""  />
+	   <input type="submit" name="forcheckingb" id="forcheckingb"/>
+</form>
+	<div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn" id="pavad">Category</button>
+ 
+  <div id="myDropdown" class="dropdown-content">
+ 
+    <input type="text"  class="input" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+	<script>
+	var chosemnamount;
+	document.getElementById("wordamount").addEventListener("input", function() {
+  document.getElementById("wordamount").value = document.getElementById("wordamount").value.slice(0, 2);
+  if (document.getElementById("wordamount").value > document.getElementById("wordamount").max){
+	  document.getElementById("wordamount").value = document.getElementById("wordamount").max;
+	   chosemnamount = document.getElementById("wordamount").value;
+  }
+  else{
+	  chosemnamount = document.getElementById("wordamount").value;
+  }
+});
+function ShowOld(dispname) {
+	
+  var pav = document.getElementById("pavad");
+  pav.innerText =  dispname;
+    document.getElementById("forchecking").value = dispname;
+	document.getElementById("forcheckingb").click();
+   <?php
+$conn = new mysqli($servername, $username, $password, $dbname);
+$sometink = $_POST['forchecking'];
+$chosemnamount = $_POST['wordamount'];
+if (!empty($sometink)){
+	 $svarbu = 1;
+}
+else{
+	$svarbu = 0;
+}
+
+$tagoid = "SELECT tag_id as 'tag_id', tag_name as 'tag_name' FROM `tags` WHERE `tag_name` = '$sometink'";
+ $result3 = mysqli_query($conn, $tagoid);
+ while($row2 = mysqli_fetch_array($result3, MYSQLI_ASSOC)){
+ $idintifikacija = $row2['tag_id'];
+ }
+$exist= "SELECT word as 'word', translation as 'translation', word_tags.word_id as 'id' , tags.tag_id as 'id2' 
+FROM ((words
+INNER JOIN word_tags ON words.word_id=word_tags.word_id)
+INNER JOIN tags ON tags.tag_id = word_tags.tag_id)
+WHERE IF($svarbu=1, tags.tag_id = $idintifikacija, tags.tag_id>0);";
+
+$resultjs2 = mysqli_query($conn, $exist);
+while($row = mysqli_fetch_array($resultjs2, MYSQLI_ASSOC)){
+	$words[] = $row['word'];
+$translations[] = $row['translation'];
+$sk+=1;
+ }
+  mysqli_close($conn);
+ ?>;
+  document.getElementById("wordamount").max = <?php echo json_encode($sk); ?>;
+    if (<?php echo json_encode($chosemnamount); ?> != 0 && <?php echo json_encode($chosemnamount); ?> < words.length ){
+ document.getElementById("wordamount").value = <?php echo json_encode($chosemnamount); ?>;
+ 
+ }
+ else{
+	 document.getElementById("wordamount").value =  <?php echo json_encode($sk); ?>;
+ }
+  }
+  
+var tags = 
+    <?php echo json_encode($tags); ?>;
+	var words = 
+    <?php echo json_encode($words); ?>;
+	 if (<?php echo json_encode($chosemnamount); ?> == 0 ){
+	 document.getElementById("wordamount").value =  words.length;
+	 }
+	 for (i = 0; i < tags.length; i++) {
+const para = document.createElement("a");
+const node = document.createTextNode(tags[i]);
+para.appendChild(node);
+para.onclick = function() {
+	ShowOld(this.innerText);
+ };
+ if (<?php echo json_encode($sometink); ?> != null){
+ document.getElementById("pavad").innerText = <?php echo json_encode($sometink); ?>;
+ }
+
+
+const element = document.getElementById("myDropdown");
+element.appendChild(para);
+	 }
+
+var change = false;
+window.onclick = function(event) {
+  if (
+  !event.target.matches('.dropbtn') 
+	  && !event.target.matches('.input')
+)  {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+     if (openDropdown.classList.contains('show')) {
+       openDropdown.classList.remove('show');
+     }
+    }
+  }
+}
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+  const input = document.getElementById("myInput");
+  input.value = null;
+  filterFunction();
+}
+function filterFunction() {
+  const input = document.getElementById("myInput");
+  const filter = input.value.toUpperCase();
+  const div = document.getElementById("myDropdown");
+  const a = div.getElementsByTagName("a");
+  for (let i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}
+
+</script>
+</div>
+ 
+</div>
 </body>
 	<script>
 var y = "<?php echo $sk?>";
@@ -72,12 +209,20 @@ var words =
     <?php echo json_encode($words); ?>;
 var translations = 
     <?php echo json_encode($translations); ?>;
-var chosemnamount = words.length;
-     	
-// Display the array elements
-//for(var i = 0; i < words.length; i++){
-  //  document.write(words[i]);
-//}
+	 document.getElementById("wordamount").max = <?php echo json_encode($sk); ?>;
+	  if (<?php echo json_encode($chosemnamount); ?> != 0 && <?php echo json_encode($chosemnamount); ?> < words.length ){
+ document.getElementById("wordamount").value = <?php echo json_encode($chosemnamount); ?>;
+ }
+ else{
+	
+	 document.getElementById("wordamount").value =  words.length;
+ }
+chosemnamount = document.getElementById("wordamount").value;//words.length;
+ //document.write(chosemnamount);    	
+//Display the array elements
+// for(var i = 0; i < words.length; i++){
+   // document.write(words[i]);
+// }
 var alphabet = "aąbcčdeęėfghiįjklmnoprsštuųūvzž";
 var alb = alphabet;
 var nr = 0;
@@ -97,6 +242,13 @@ var bad2 = document.getElementById("badPic2");
 	
 var klaidukiek=0;
 function displayblock(){
+	document.getElementById("wordamount").style.display="none";
+	document.getElementById("wordamountl").style.display="none";
+	document.getElementById("pavad").style.display="none";
+	if(document.getElementById("wordamount").value < 1){
+	document.getElementById("wordamount").value = document.getElementById("wordamount").max;
+	chosemnamount = document.getElementById("wordamount").value;
+	}
 	var instruct = document.getElementById("instruct");
 	var start =  document.getElementsByTagName('input')[1];
 	instruct.innerHTML = y;
@@ -216,7 +368,7 @@ function mouseUp() {
 		   document.getElementById("box").innerHTML = x;
 		   resetall();
 }, 2000);
-if (nr < chosemnamount - 1){
+if (nr < chosemnamount-1){
 nr +=1;
 x = words[nr];
 y = translations[nr];

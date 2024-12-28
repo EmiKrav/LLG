@@ -21,7 +21,7 @@ session_start();
     </div>
      
 
-    <div id="wrap">
+    <div id="wrap2">
 
 
          <?php
@@ -107,7 +107,7 @@ mysqli_close($conn);
 
 ?>
 
-        <form action="" method="post">
+        <form action="" method="post" class="form2">
 			<p>
             <label for="email">Email:</label>
 
