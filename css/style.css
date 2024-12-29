@@ -33,7 +33,7 @@ table{
 p{
 
     margin: 10px 0px 10px 0px; /* Add some padding to the top and bottom of the <p> tags */
-
+	text-align: justify;
 }
 
  
@@ -342,7 +342,7 @@ user-select: none;
   padding: 10px;
   font-size: 16px;
   border: none;
-  cursor: pointer;
+
 }
 
 .dropbtn:hover, .dropbtn:focus {
@@ -369,6 +369,7 @@ user-select: none;
   position: relative;
   display: inline-block;
    padding: 14px 1px 10px 1px;
+    user-select: none
 }
 
 .dropdown-content {
@@ -400,4 +401,66 @@ user-select: none;
 }
 #wordamount{
 	display: block; 
+}
+#logoutbutton{
+	display: none;
+}
+#passwordbutton{
+	display: none;
+}
+#deletebutton{
+	display: none;
+}
+.dropbtna{
+	min-width: 130px;
+	border: 2px solid #DFDFDF; 
+	margin-top: 5px;
+	padding: 5px;
+	font: normal 16px Georgia; /* Set font for our input fields */
+	text-align: center;
+	color: #464646;
+}
+
+.dropbtna:hover, .dropbtna:focus {
+  
+}
+.input a{
+	
+}
+
+.dropdowna {
+  position: relative;
+  display: inline-block;
+   padding: 1px 1px 1px 1px;
+    user-select: none
+}
+
+.dropdown-contenta {
+  display: none;
+  position: absolute;
+  background-color: #ddd;
+  min-width: 130px;
+  overflow: auto;
+  z-index: 1;
+  font: normal 16px Georgia;
+  color: #464646;
+}
+
+.dropdown-contenta a {
+   font: normal 16px Georgia;
+  color: #464646;
+  padding: 5px;
+  display: block;
+}
+
+.dropdowna a:hover {background-color: grey;}
+
+.showa {display: block;}
+#pasmyg{
+ border:none; 
+ background: white;
+ text-decoration: underline;
+}
+#pasmyg:hover {
+  color: blue;
 }

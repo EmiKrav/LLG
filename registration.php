@@ -86,7 +86,7 @@ Your account has been created, you can login with the following code after you h
 
 Username: '.$name.'
 
-Password: '.$password.'
+Password: '.$userpassword.'
 
 ------------------------
 
@@ -146,7 +146,7 @@ mysqli_close($conn);
 			<p>
             <label for="userpassword">Password:</label>
 
-            <input type="text" name="userpassword" value="" />
+            <input type="password" name="userpassword" value="" />
 			</p>
 			<p>
             <label for="email">Email:</label>

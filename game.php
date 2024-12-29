@@ -64,13 +64,13 @@ while($row2 = mysqli_fetch_array($result3, MYSQLI_ASSOC)){
 	<div id="dogPic"></div>
 	<div id="badPic"></div>
 	<div id="badPic2"></div>
-	<h1 id="instruct">How to play: <br> Drag cube with correct letter to the box </h1>
+	<h1 id="instruct" style="user-select: none;">How to play: <br> Drag cube with correct letter to the box </h1>
 			<form method="POST" >
 		<p>
 		
 	 <label for="wordamount" id="wordamountl">Words:</label>
 	 </p>
-		<input type="number" id="wordamount" name="wordamount" min="1" max="100" value="0">
+		<input type="number" id="wordamount" name="wordamount" min="1" max="051" value="0">
        <input type="text" name="forchecking" id="forchecking" value=""  />
 	   <input type="submit" name="forcheckingb" id="forcheckingb"/>
 </form>
@@ -81,11 +81,20 @@ while($row2 = mysqli_fetch_array($result3, MYSQLI_ASSOC)){
  
     <input type="text"  class="input" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
 	<script>
-	var chosemnamount;
+var chosemnamount;
 	document.getElementById("wordamount").addEventListener("input", function() {
-  document.getElementById("wordamount").value = document.getElementById("wordamount").value.slice(0, 2);
-  if (document.getElementById("wordamount").value > document.getElementById("wordamount").max){
-	  document.getElementById("wordamount").value = document.getElementById("wordamount").max;
+		  document.getElementById("wordamount").max = document.getElementById("wordamount").max.slice(0,2).padStart(2,"0")
+   if (document.getElementById("wordamount").value == '0'){
+	  document.getElementById("wordamount").value = '1';
+  }
+   if (document.getElementById("wordamount").value <= '9'){
+	  document.getElementById("wordamount").value = document.getElementById("wordamount").value.slice(0, 2);
+  }
+   if (document.getElementById("wordamount").value.padStart(2,"0") > document.getElementById("wordamount").max){
+	 document.getElementById("wordamount").value = document.getElementById("wordamount").max.slice(0,2);
+	  if (document.getElementById("wordamount").value <= '9'){
+	  document.getElementById("wordamount").value = document.getElementById("wordamount").value.slice(0, 2);
+  }
 	   chosemnamount = document.getElementById("wordamount").value;
   }
   else{
@@ -108,7 +117,7 @@ if (!empty($sometink)){
 else{
 	$svarbu = 0;
 }
-
+$randomas=rand(1,7);
 $tagoid = "SELECT tag_id as 'tag_id', tag_name as 'tag_name' FROM `tags` WHERE `tag_name` = '$sometink'";
  $result3 = mysqli_query($conn, $tagoid);
  while($row2 = mysqli_fetch_array($result3, MYSQLI_ASSOC)){
@@ -118,7 +127,7 @@ $exist= "SELECT word as 'word', translation as 'translation', word_tags.word_id 
 FROM ((words
 INNER JOIN word_tags ON words.word_id=word_tags.word_id)
 INNER JOIN tags ON tags.tag_id = word_tags.tag_id)
-WHERE IF($svarbu=1, tags.tag_id = $idintifikacija, tags.tag_id>0);";
+WHERE IF($svarbu=1, tags.tag_id = $idintifikacija, tags.tag_id>0) ORDER BY RAND();";
 
 $resultjs2 = mysqli_query($conn, $exist);
 while($row = mysqli_fetch_array($resultjs2, MYSQLI_ASSOC)){

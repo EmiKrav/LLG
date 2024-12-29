@@ -75,18 +75,18 @@ while($row2 = mysqli_fetch_array($result3, MYSQLI_ASSOC)){
 	<div id="asteroid2"></div>
 	<div id="asteroid3"></div>
 	<div id="bullet"></div>
-	<div id="wordbox" ></div>
-	<div id="wordbox2" ></div>
-	<div id="wordbox3" ></div>
-	<div id="wordbox4" ></div>
+	<div style="user-select: none" id="wordbox" ></div>
+	<div style="user-select: none" id="wordbox2" ></div>
+	<div style="user-select: none" id="wordbox3" ></div>
+	<div style="user-select: none" id="wordbox4" ></div>
 	<input type="text" maxlength="1" id="mytext" value="">
-	<h1 id="instruct">How to play: <br> Type your answer (A/B/C) in the grey box<br> Move ship with arrow keys <br> Shoot asteroids with space key</h1>
+	<h1 id="instruct" style="user-select: none">How to play: <br> Type your answer (A/B/C) in the grey box<br> Move ship with arrow keys <br> Shoot asteroids with space key</h1>
 <form method="POST" >
 		<p>
 		
 	 <label for="wordamount" id="wordamountl">Words:</label>
 	 </p>
-		<input type="number" id="wordamount" name="wordamount" min="1" max="100" value="0">
+		<input type="number" id="wordamount" name="wordamount" min="1" max="051" value="0">
        <input type="text" name="forchecking" id="forchecking" value=""  />
 	   <input type="submit" name="forcheckingb" id="forcheckingb"/>
 </form>
@@ -97,11 +97,20 @@ while($row2 = mysqli_fetch_array($result3, MYSQLI_ASSOC)){
  
     <input type="text"  class="input" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
 	<script>
-	var chosemnamount;
+var chosemnamount;
 	document.getElementById("wordamount").addEventListener("input", function() {
-  document.getElementById("wordamount").value = document.getElementById("wordamount").value.slice(0, 2);
-  if (document.getElementById("wordamount").value > document.getElementById("wordamount").max){
-	  document.getElementById("wordamount").value = document.getElementById("wordamount").max;
+		  document.getElementById("wordamount").max = document.getElementById("wordamount").max.slice(0,2).padStart(2,"0")
+   if (document.getElementById("wordamount").value == '0'){
+	  document.getElementById("wordamount").value = '1';
+  }
+   if (document.getElementById("wordamount").value <= '9'){
+	  document.getElementById("wordamount").value = document.getElementById("wordamount").value.slice(0, 2);
+  }
+   if (document.getElementById("wordamount").value.padStart(2,"0") > document.getElementById("wordamount").max){
+	 document.getElementById("wordamount").value = document.getElementById("wordamount").max.slice(0,2);
+	  if (document.getElementById("wordamount").value <= '9'){
+	  document.getElementById("wordamount").value = document.getElementById("wordamount").value.slice(0, 2);
+  }
 	   chosemnamount = document.getElementById("wordamount").value;
   }
   else{
@@ -145,6 +154,7 @@ $sk+=1;
   mysqli_close($conn);
  ?>;
   document.getElementById("wordamount").max = <?php echo json_encode($sk); ?>;
+ 
     if (<?php echo json_encode($chosemnamount); ?> != 0 && <?php echo json_encode($chosemnamount); ?> < words.length ){
  document.getElementById("wordamount").value = <?php echo json_encode($chosemnamount); ?>;
  
@@ -272,6 +282,7 @@ var vert1 = document.getElementById("wordbox3");
 var vert2 = document.getElementById("wordbox4");
 
 var tekstas = document.getElementById("mytext");
+
 tekstas.value="";
 var tekstasv = tekstas.value;
 var paspausta = false;
@@ -289,6 +300,10 @@ zodis.style.display = "none";
 
 var klaidukiekis=0;
 function displayblock(){
+	tekstas.addEventListener("input", updateValue);
+	function updateValue(e) {
+  tekstas.value = e.target.value.toUpperCase();
+}
 	document.getElementById("wordamount").style.display="none";
 	document.getElementById("wordamountl").style.display="none";
 	document.getElementById("pavad").style.display="none";
@@ -383,7 +398,8 @@ function moving(e) {
   tekstas.disabled = false; 
 }, 10);
     }
-	tekstasv = tekstas.value;
+	
+	tekstasv = tekstas.value.toUpperCase();
 	if ((tekstasv == "A" || tekstasv == "B" || tekstasv == "C") && nr == 0){
 	nr = 1;
   bullet.style.display = "block";
