@@ -12,15 +12,19 @@
 
 <body>
 
-    <div id="header">
-
-        <h3>Sign up</h3>
-
-    </div>
+  
      
 
-    <div id="wrap">
+    <div >
 
+<section class="container">
+<div class="login-container">
+	
+        <form action="" method="post" class="form-container">
+		 <img src="https://cdn.pixabay.com/photo/2022/11/06/04/57/cat-7573258_1280.png" alt="illustration" class="illustration2" />
+	
+		<h1 class="opacity">Register</h1>
+		<p class="opacity">
 
          <?php
 $servername = "localhost";
@@ -110,19 +114,7 @@ mysqli_close($conn);
 }
 }
 
-             
-
-?>
-
-
-    
-
-        <h3>Register</h3>
-
-        
-
-         <?php 
-
+            
     if(isset($msg)){  
 
         echo '<div class="statusmsg" >'.$msg.'</div>'; 
@@ -135,10 +127,10 @@ mysqli_close($conn);
            header('Location: index.php');
         }
 
-?>
+function wrong($msg){
+	echo $msg;}
+?></p>
 
-        <form action="" method="post">
-			<p>
             <label for="name">Username:</label>
 
             <input type="text" name="name" value="" />
@@ -153,15 +145,15 @@ mysqli_close($conn);
 
             <input type="text" name="email" value="" />
 			</p>
-			<p>
-            <input type =  "submit" id = "btn" value = "Submit" />
-			<input type="submit" name="button1"
+			 <div class="register-forget opacity">
+		
+            <input  id="register-forgetbutton"type =  "submit" id = "btn" value = "Submit" />
+			<input  id="register-forgetbutton"type="submit" name="button1"
                 id = "btn" value="Log In" />
-			</p>
-
+				</div>
         </form>
-
     </div>
+	</section>
 </body>
 
 </html>

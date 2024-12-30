@@ -14,6 +14,7 @@ session_start();
 </head>
 
 <body>
+<div id="header">
            <?php 
 $change = false;
 		if(array_key_exists('button1', $_POST)) {
@@ -59,30 +60,15 @@ $change = false;
 ?>
 <?php 
 if (isset($_SESSION["username"] )){?>
-    <div id="header"style="clear: both">
-	
-		 <form action="" method="post">
-
-			 <input style="float: left;margin-left: 20px;" type="submit" id="buttonheader" name="buttongame"
-                 value="Cube Game"/>
-			 <input style="float: left;margin-left: 20px;" type="submit" id="buttonheader" name="button2game"
-                 value="Ship Game"/>
-				 <input style="float: left;margin-left: 20px;" type="submit" id="buttonheader" name="wordsreview"
-                 value="Learn Words"/>
-				 <input style="float: right;margin-right: 20px;" type="submit" id="logoutbutton" name="button1"
-                 value="Log Out" />
-				  <input style="float: right;margin-right: 40px;" type="submit" id="passwordbutton" name="button2"
-                 value="Change Password" />
-				  <input style="float: right;margin-right: 40px;" type="submit" id="deletebutton" name="button3"
-                 value="Delete Account" />
-				 </form>
-	 				 <div class="dropdowna" style="float: right;margin-right: 20px;">
+   
+	 				 <div class="dropdowna" style="float: right; margin-top:0px;">
   <button onclick="myFunction()" class="dropbtna">  ⮟ <?php  echo $_SESSION["username"] ?> </button>
   <div id="myDropdown" class="dropdown-contenta">
     <a onclick="myFunction2()">Log Out</a>
 	 <a onclick="passwordchange()">Change password</a>
 	  <a onclick="deleteacc()">Delete Account</a>
   </div>
+
 </div>
 <script>
 /* When the user clicks on the button, 
@@ -114,10 +100,32 @@ function deleteacc() {
 	  document.getElementById("deletebutton").click();
 }
 </script>
-
+<h1 style="text-align: left; margin-left:10px; user-select: none">Language learning games </h1>
     </div>
-	<h1 style="text-align: center;  user-select: none">Language learning games </h1>
-	<img src="mainpic.jpg" alt="Looking at words with magnifying glass" width="100%" height="430">
+	   
+	
+
+		 <form action="" method="post">
+		 
+  <div class="register-forget opacity" style="margin-top:0px;margin-right:10px ">
+			 <input style="float: left;margin-left: 20px; background-color: white; height: 100px" type="submit" id="register-forgetbutton" name="buttongame"
+                 value="Cube Game"/>
+			 <input style="float: left;margin-left: 20px;background-color: white;" type="submit" id="register-forgetbutton" name="button2game"
+                 value="Ship Game"/>
+				 <input style="float: left;margin-left: 20px;background-color: white;" type="submit" id="register-forgetbutton" name="wordsreview"
+                 value="Learn Words"/>
+			
+				 <input style="float: right;margin-right: 20px;" type="submit" id="logoutbutton" name="button1"
+                 value="Log Out" />
+				  <input style="float: right;margin-right: 40px;" type="submit" id="passwordbutton" name="button2"
+                 value="Change Password" />
+				  <input style="float: right;margin-right: 40px;" type="submit" id="deletebutton" name="button3"
+                 value="Delete Account" />
+				 </form>
+			 </div>	
+	
+	
+	
 
      
 

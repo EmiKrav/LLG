@@ -17,18 +17,18 @@ session_start();
 </head>
 
 <body>
-    <div id="header">
-
-        <h3>Login</h3>
-
-    </div>
      
 
-    <div id="wrap2">
-
-
+<section class="container">
+<div class="login-container">
+	
+        <form action="" method="post" class="form-container">
+		 <img src="https://cdn.pixabay.com/photo/2022/11/06/04/57/cat-7573258_1280.png" alt="illustration" class="illustration" />
+	
+		<h1 class="opacity">Login</h1>
+		<p class="opacity">
          <?php
-
+$msg=null;
 $servername = "localhost";
 $username = "root";
 $password = "alakard13";
@@ -40,7 +40,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-$msg = null;
+
 if(isset($_POST['email']) && !empty($_POST['email']) AND isset($_POST['userpassword']) && !empty($_POST['userpassword'])){
 
 
@@ -87,14 +87,7 @@ mysqli_close($conn);
 }
 }
 
-             
-
-?>
-
-      
-
-         <?php 
-    
+       
   if(array_key_exists('button1', $_POST)) {
             button1();
         }
@@ -158,38 +151,33 @@ header('Location: passwordrecoverydone.php');
 		}
 		else{
 			$msg = 'Type your email for password recovery';
-			wrong($msg );
+			wrong($msg);
 		}
 		}
 
-?>
-        <h3>Login</h3>
+function wrong($msg){
+	echo $msg;}
+?></p>
+            <label  class="opacity"for="email">EMAIL:</label>
+            <input  type="text" name="email" value="" />
+			
 
-       
-<?php function wrong($msg){echo "<p>$msg</p>";}?>
-
-        <form action="" method="post" class="form2">
-			<p>
-            <label for="email">Email:</label>
-
-            <input type="text" name="email" value="" />
-			</p>
-			<p>
-            <label for="userpassword">Password:</label>
+            <label  class="opacity"for="userpassword">PASSWORD:</label>
 
             <input type="password" name="userpassword" value="" />
+		             <div class="register-forget opacity">
+		<p>
+            <input id="register-forgetbutton" type = "submit" name="submit"  value = "Submit" />
 			</p>
 			<p>
-            <input type =  "submit" name="submit" id = "btn" value = "Submit" />
-			
-			 <input type="submit" name="button1"
-                id = "btn" value="Register" />
-				 <input type="submit" name="button2"
-               id="pasmyg" value="Forgot Password" />
-			</p>
-
+			 <input id="register-forgetbutton" type="submit" name="button1" value="Register" />
+			 </p>
+			 <p>
+				 <input id="registerbutton"type="submit" name="button2"  value="Forgot Password" />
+				 </p>
+				</div>
         </form>
-
-    </div>
+</div>
+	</section>
 </body>
 </html>

@@ -15,6 +15,11 @@ session_start();
 </head>
 
 <body>
+<section class="container">
+<div class="login-container">
+<form action="" method="post" class="form-container">
+	<h1 class="opacity">Authentification</h1>
+		<p class="opacity">
            <?php 
 	 $sh =$_SESSION["hash"];
 	 $idy =$_SESSION["ind"];
@@ -50,26 +55,27 @@ $conn->close();
 			header('Location: main.php');
 			}
 				else{
-				echo "Wrong code!";
+				$msg = 'Wrong code!';
+			wrong($msg);
 			}
 			}
         }
-
+function wrong($msg){
+	echo $msg;}
 ?>
-
-   <form action="" method="post">
-
-            <label for="name">Code:</label>
-
-            <input type="text" name="name" value="" />
-		
-			<input type="submit" name="button1"
-                id = "btn" value="Submit" />
 			</p>
-
+     <p>
+            <input type="text" name="name" value="" />
+			  </p>
+<div class="register-forget opacity">
+		  <p>
+			<input id="register-forgetbutton"  type="submit" name="button1" value="Submit" />
+			</p>
+</div>
         </form>
      
-
+</div>
+	</section>
    
 </body>
 

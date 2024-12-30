@@ -15,13 +15,21 @@ session_start();
 </head>
 
 <body>
- <div id="header"style="clear: both">
+ <div id="header">
 	
+	<div class="register-forget opacity" style="margin-top:20px;margin-right:10px ">
 		<form action="" method="post">
-			 <input style="float: left; margin-left: 20px;" type="submit" id="buttonheader" name="buttonback"
+			  <input style="float: left; margin-left: 20px;background-color: white;"  type="submit" id="register-forgetbutton" name="buttonback"
                  value="Back" />
 				 </form>
 				 </div>
+				 </div>
+				 <section class="container" style="margin-top:-75px;">
+<div class="login-container">
+	
+        <form action="" method="post" class="form-container">
+		<h1 class="opacity">Account Delete</h1>
+		<p class="opacity">
            <?php 
 $msg = null;
 	  if(array_key_exists('buttonback', $_POST)) {
@@ -91,20 +99,21 @@ mysqli_close($conn);
 }
 }
 
-?>
- <div id="wrap">
-  <h3>Account Delete</h3>
-   
-
-<?php function wrong($msg){echo "<p id=wrap>$msg</p>";}?>
-   <form action="" method="post">   
+function wrong($msg){
+	echo $msg;}
+?></p>  
 			<p>
 			<label for="email">Your Email:</label>
             <input type="text" name="email" value="" />
 			</p>
             <p>
+			<div class="register-forget opacity">
+		<p>
 			<input type="submit" name="button1"
-                id = "btn" value="Delete" />
+                  id="register-forgetbutton" value="Delete" />
+				</p>
+				
+				</div>
 			</p>
  
         </form>

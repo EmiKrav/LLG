@@ -9,7 +9,7 @@
      <link href="css/style.css?key=<?php echo time(); ?>" type="text/css" rel="stylesheet" />
 
 </head>
-<body>
+<body >
 
            <?php 
 		   
@@ -45,26 +45,25 @@ if (!$result3) {
 		
 
 ?>
-    <div id="header"style="clear: both">
+    <div id="header">
 	
 <form method="POST">
        <input type="text" name="forchecking" id="forchecking" value=""  />
 	   <input type="submit" name="forcheckingb" id="forcheckingb"/>
 </form>
+<div class="register-forget opacity" style="margin-top:20px;margin-right:10px ">
  <form action="" method="post">
-			 <input style="float: left; margin-left: 20px;" type="submit" id="buttonheader" name="button1"
-                 value="Back" />
+			 <input style="float: left; margin-left: 20px;background-color: white;"  type="submit" id="register-forgetbutton" name="button1" value="Back" />
 				 </form>
-				 <h3 style="float;text-align-last: center;user-select: none;">Words</h3>
 				 </div>
 				 
 				
-		<div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn" id="pavad">Category</button>
+		<div class="dropdowna">
+  <button onclick="myFunction()" class="dropbtna" id="pavad" style="width:25%; margin-left:40%; margin-top:2%">Category</button>
  
-  <div id="myDropdown" class="dropdown-content">
+  <div id="myDropdowna" class="dropdown-content" style="width:24%; margin-left:40%">
  
-    <input type="text"  class="input" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+    <input type="text"  class="input" style="width:98%; text-align:left" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
 	<script>
 function ShowOld(dispname) {
 	
@@ -116,14 +115,14 @@ para.onclick = function() {
  if (<?php echo json_encode($sometink); ?> != null){
  document.getElementById("pavad").innerText = <?php echo json_encode($sometink); ?>;
  }
-const element = document.getElementById("myDropdown");
+const element = document.getElementById("myDropdowna");
 element.appendChild(para);
 	 }
 
 var change = false;
 window.onclick = function(event) {
   if (
-  !event.target.matches('.dropbtn') 
+  !event.target.matches('.dropbtna') 
 	  && !event.target.matches('.input')
 )  {
     var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -137,7 +136,7 @@ window.onclick = function(event) {
   }
 }
 function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
+  document.getElementById("myDropdowna").classList.toggle("show");
   const input = document.getElementById("myInput");
   input.value = null;
   filterFunction();
@@ -145,7 +144,7 @@ function myFunction() {
 function filterFunction() {
   const input = document.getElementById("myInput");
   const filter = input.value.toUpperCase();
-  const div = document.getElementById("myDropdown");
+  const div = document.getElementById("myDropdowna");
   const a = div.getElementsByTagName("a");
   for (let i = 0; i < a.length; i++) {
     txtValue = a[i].textContent || a[i].innerText;

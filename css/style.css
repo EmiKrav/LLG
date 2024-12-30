@@ -1,16 +1,168 @@
 /* Global Styles */
 
- 
 
-body{
 
-    background: #F9F9F9; /* Set HTML background color */
-
-    font: 14px "Lucida Grande";  /* Set global font size & family */
-
-    color: #464646; /* Set global text color */
-
+html {
+    scroll-behavior: smooth;
 }
+
+body {
+	opacity: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: poppins;
+    background: rgba(20,55,75,0.5);
+    color: color: #FFFFFF;
+    letter-spacing: 1px;
+    transition: background 0.2s ease;
+    -webkit-transition: background 0.2s ease;
+    -moz-transition: background 0.2s ease;
+    -ms-transition: background 0.2s ease;
+    -o-transition: background 0.2s ease;
+}
+
+a {
+    text-decoration: none;
+    color: color: #FFFFFF;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+.container {
+	opacity: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	height: 100vh;
+}
+
+.login-container {
+    position: absolute;
+    width: 25.2rem;
+}
+.form-container {
+	opacity: 90%;
+	background: rgba(20,55,15,0.1);
+    border: 1px solid hsla(0, 0%, 65%, 0.158);
+    box-shadow: 0 0 30px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    backdrop-filter: blur(50px);
+    z-index: 90;
+    padding: 2rem;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.login-container form input {
+    display: block;
+    padding: 14.5px;
+    width: 90%;
+    margin: 1.5rem 0;
+    color: color: "#FFFFFF";
+    outline: none;
+    background-color: #9191911f;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    font-size: 15px;
+    backdrop-filter: blur(15px);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+	
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px #23232329;
+	
+}
+.login-container form input:focus {
+    box-shadow: 0 0 16px 1px rgba(0, 0, 0, 0.2);
+    animation: wobble 0.3s ease-in;
+    -webkit-animation: wobble 0.3s ease-in;
+}
+
+.illustration {
+    position: absolute;
+    top: 7%;
+    right: 10px;
+    width: 60%;
+}
+.illustration2 {
+    position: absolute;
+    top: 5%;
+    right: -15px;
+    width: 60%;
+}
+.register-forget {
+    margin: -2rem 0 ;
+    display: flex;
+    justify-content: space-between;
+}
+#register-forgetbutton {
+    background-color: rgba(20,55,75,0.2);
+    display: block;
+	padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    font-weight: bold;
+    width: 90%;
+    margin-bottom: 2rem;
+	margin-right: 2rem;
+    transition: all 0.1s ease-in-out;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+}
+#register-forgetbutton:hover {
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+    -webkit-transform: scale(1.02);
+    -moz-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    -o-transform: scale(1.02);
+}
+#registerbutton {
+    display: block;
+    padding: 6px;
+    border-radius: 5px;
+    outline: none;
+    width: 100%;
+    margin-bottom: 2rem;
+    transition: all 0.1s ease-in-out;
+    border: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+	 text-decoration: underline;
+}
+#registerbutton:hover {
+  color: blue;
+}
+.opacity {
+    opacity: 0.6;
+}
+
+
 tr {
   background-color: #eee;
   text-align: center;
@@ -32,22 +184,19 @@ table{
 
 p{
 
-    margin: 10px 0px 10px 0px; /* Add some padding to the top and bottom of the <p> tags */
+    margin: 10px 0px 10px 0px; 
 	text-align: justify;
 }
 
  
 
-/* Header */
-
- 
-
 #header{
 
-    height: 45px; /* Set header height */
-
-    background: #464646; /* Set header background color */
-	
+    height: 55px; 
+    background: rgba(20,55,15,0.3);
+	clear: both;
+	margin-top:-2%;
+	margin-bottom:2%;
 
 }
 
@@ -336,57 +485,63 @@ user-select: none;
    writing-mode: vertical-lr;
   text-orientation: upright;
 }
-.dropbtn {
-  background-color: #505050;
-  color: white;
-  padding: 10px;
-  font-size: 16px;
-  border: none;
 
-}
-
-.dropbtn:hover, .dropbtn:focus {
-  background-color: grey;
-}
-.input{
-	
-}
 
 #myInput {
   box-sizing: border-box;
   background-image: url('searchicon.png');
   background-position: 14px 12px;
   background-repeat: no-repeat;
-  font-size: 16px;
   padding: 14px 20px 12px 25px;
-  border: none;
+ border-radius: 5px;
   border-bottom: 1px solid #ddd;
 }
 
 #myInput:focus {outline: 3px solid #ddd;}
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-   padding: 14px 1px 10px 1px;
-    user-select: none
-}
+
 
 .dropdown-content {
+ user-select: none;
   display: none;
   position: absolute;
   background-color: #ddd;
-  min-width: 230px;
+  min-width: 130px;
   overflow: auto;
-  border: 1px solid #ddd;
   z-index: 1;
+  color: #464646;
+  padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    font-weight: bold;
+    transition: all 0.1s ease-in-out;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
 }
 
 .dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
+  color: #464646;
+  padding: 5px;
   display: block;
+  padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    font-weight: bold;
+    transition: all 0.1s ease-in-out;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
 }
 
 .dropdown a:hover {background-color: grey;}
@@ -412,13 +567,27 @@ user-select: none;
 	display: none;
 }
 .dropbtna{
-	min-width: 130px;
+	min-width: 155px;
 	border: 2px solid #DFDFDF; 
 	margin-top: 5px;
 	padding: 5px;
-	font: normal 16px Georgia; /* Set font for our input fields */
 	text-align: center;
 	color: #464646;
+    display: block;
+    border-radius: 5px;
+    outline: none;
+    font-weight: bold;
+    margin-bottom: 5px;
+	margin-right: 2rem;
+    transition: all 0.1s ease-in-out;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
 }
 
 .dropbtna:hover, .dropbtna:focus {
@@ -431,26 +600,65 @@ user-select: none;
 .dropdowna {
   position: relative;
   display: inline-block;
-   padding: 1px 1px 1px 1px;
-    user-select: none
+   padding: 2px 2px 2px 2px;
+    user-select: none;
+    display: block;
+	padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    font-weight: bold;
+    transition: all 0.1s ease-in-out;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
 }
 
 .dropdown-contenta {
+user-select: none;
   display: none;
   position: absolute;
   background-color: #ddd;
   min-width: 130px;
   overflow: auto;
   z-index: 1;
-  font: normal 16px Georgia;
   color: #464646;
+  padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    font-weight: bold;
+    transition: all 0.1s ease-in-out;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
 }
 
 .dropdown-contenta a {
-   font: normal 16px Georgia;
   color: #464646;
   padding: 5px;
   display: block;
+  padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    font-weight: bold;
+    transition: all 0.1s ease-in-out;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
 }
 
 .dropdowna a:hover {background-color: grey;}

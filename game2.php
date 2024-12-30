@@ -56,17 +56,18 @@ while($row2 = mysqli_fetch_array($result3, MYSQLI_ASSOC)){
 		
 
 ?>
-    <div id="header"style="clear: both">
+    <div id="header">
 	
 
        
  <form action="" method="post">
-			 <input style="float: left; margin-left: 20px;" type="submit" id="buttonheader" name="button1"
-                 value="Back" />
+ <div class="register-forget opacity" style="margin-top:20px;margin-right:10px ">
+ </div>
+			 <input class="register-forget opacity"  style="float: left;background-color: white;margin-left:5%;width:10%"id="register-forgetbutton" 
+			 type="submit"  name="button1" value="Back" />
 				 </form>
-				 <input style="float: left; margin-left: 20px;" type="submit"onclick = "displayblock()"  id="buttonheader" name="buttonstart"
-                 value="Start" /> 
-				 <h3 style="float;text-align-last: center;user-select: none;">Game</h3>
+				 <input class="register-forget opacity" style="float: left; width:10%;margin-left:85%;background-color: white;margin-top:-64px;"
+				 type="submit" onclick = "displayblock()"   id="register-forgetbutton" name="buttonstart" value="Start"/> 
 
 
     </div>
@@ -81,19 +82,21 @@ while($row2 = mysqli_fetch_array($result3, MYSQLI_ASSOC)){
 	<div style="user-select: none" id="wordbox4" ></div>
 	<input type="text" maxlength="1" id="mytext" value="">
 	<h1 id="instruct" style="user-select: none">How to play: <br> Type your answer (A/B/C) in the grey box<br> Move ship with arrow keys <br> Shoot asteroids with space key</h1>
+	<div class="login-container" style="margin-left:35%">
+	
 <form method="POST" >
 		<p>
 		
-	 <label for="wordamount" id="wordamountl">Words:</label>
+	 <label for="wordamount" id="wordamountl" style="margin-left:40%">Words:</label>
 	 </p>
-		<input type="number" id="wordamount" name="wordamount" min="1" max="051" value="0">
+		<input style=" background-color: #ddd; text-align:center" type="number" id="wordamount" name="wordamount" min="1" max="051" value="0">
        <input type="text" name="forchecking" id="forchecking" value=""  />
 	   <input type="submit" name="forcheckingb" id="forcheckingb"/>
 </form>
-<div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn" id="pavad">Category</button>
+<div class="dropdowna">
+  <button onclick="myFunction()" class="dropbtna" style="width:69%; margin-left:15%"  id="pavad">Category</button>
  
-  <div id="myDropdown" class="dropdown-content">
+  <div id="myDropdowna" style=" margin-left:15%"  class="dropdown-content">
  
     <input type="text"  class="input" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
 	<script>
@@ -183,14 +186,14 @@ para.onclick = function() {
  }
 
 
-const element = document.getElementById("myDropdown");
+const element = document.getElementById("myDropdowna");
 element.appendChild(para);
 	 }
 
 var change = false;
 window.onclick = function(event) {
   if (
-  !event.target.matches('.dropbtn') 
+  !event.target.matches('.dropbtna') 
 	  && !event.target.matches('.input')
 )  {
     var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -204,7 +207,7 @@ window.onclick = function(event) {
   }
 }
 function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
+  document.getElementById("myDropdowna").classList.toggle("show");
   const input = document.getElementById("myInput");
   input.value = null;
   filterFunction();
@@ -212,7 +215,7 @@ function myFunction() {
 function filterFunction() {
   const input = document.getElementById("myInput");
   const filter = input.value.toUpperCase();
-  const div = document.getElementById("myDropdown");
+  const div = document.getElementById("myDropdowna");
   const a = div.getElementsByTagName("a");
   for (let i = 0; i < a.length; i++) {
     txtValue = a[i].textContent || a[i].innerText;
@@ -226,7 +229,8 @@ function filterFunction() {
 
 </script>
 </div>
- 
+  
+</div>
 </div>
 </body>
  <script type="text/javascript">
