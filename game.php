@@ -61,6 +61,7 @@ while($row2 = mysqli_fetch_array($result3, MYSQLI_ASSOC)){
 				 
  
  </div>
+	<strong id="monster"></strong>
 	<strong id="box"></strong>
 	<div id="dogPic"></div>
 	<div id="badPic"></div>
@@ -80,7 +81,7 @@ while($row2 = mysqli_fetch_array($result3, MYSQLI_ASSOC)){
 	<div class="dropdowna">
   <button onclick="myFunction()" class="dropbtna" style="width:69%; margin-left:15%" id="pavad">Category</button>
  
-  <div id="myDropdowna" style=" margin-left:15%" class="dropdown-content">
+  <div id="myDropdowna" style=" margin-left:15%;overflow-x:auto;overflow-y:scroll;height: 150px;" class="dropdown-content">
  
     <input type="text"  class="input" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
 	<script>
@@ -243,17 +244,26 @@ var nr = 0;
 var letter = Math.floor(Math.random() * x.length);
 var correct = document.getElementById("dogPic");
 var box = document.getElementById("box");
+var monster = document.getElementById("monster");
 
 var bad = document.getElementById("badPic");
 var bad2 = document.getElementById("badPic2");
 	
 	correct.style.display = "none";
+	monster.style.display = "none";
 	box.style.display = "none";
 	bad.style.display = "none";
 	bad2.style.display = "none";
 	
 var klaidukiek=0;
+var sx = screen.availWidth;
+var sy = screen.availHeight;
+
+
+
+
 function displayblock(){
+	
 	document.getElementById("wordamount").style.display="none";
 	document.getElementById("wordamountl").style.display="none";
 	document.getElementById("pavad").style.display="none";
@@ -296,26 +306,37 @@ if (box.style.display == "none"){
   }
 	}
 	}
-
+if (monster.style.display == "none"){
+	
+	monster.style.display = "block";
+	for(var i = 0; i < x.length; i++){
+  if (i != letter){
+	document.getElementById("monster").innerHTML += x[i];
+  }
+   else{
+	  document.getElementById("monster").innerHTML += "_";
+  }
+	}
+	}
 	var moving = false;
 correct.addEventListener("mousedown", initialClick, false);
 bad.addEventListener("mousedown", initialClick, false);
 bad2.addEventListener("mousedown", initialClick, false);
 function move(e){
-
   var newX = e.clientX - 10;
   var newY = e.clientY - 10;
-if (newX > 100 && newX < 1100){
+  
+if (newX > 50 && newX < sx-50){
   image.style.left = newX + "px";
 }
-if (newY > 100 && newY < 500){
+if (newY > 100 && newY <sy -200){
   image.style.top = newY + "px";
 }
 
-  if (newX <= 100 || newX >= 1100){
+  if (newX <= 50 || newX >= sx-50){
 	initialClick();
 }
-  if (newY <= 100 || newY >= 500){
+  if (newY <= 100 || newY >= sy-200){
 	initialClick();
 }
   
@@ -334,41 +355,49 @@ function resetall(){
 	alb = alb.replace(bad2.innerHTML,'');
 	instruct.innerHTML = y;
 	document.getElementById("box").innerHTML ="";
+	document.getElementById("monster").innerHTML ="";
 		for(var i = 0; i < x.length; i++){
   if (i != letter){
 	document.getElementById("box").innerHTML += x[i];
+	document.getElementById("monster").innerHTML += x[i];
   }
   else{
 	  document.getElementById("box").innerHTML += "_";
+	  document.getElementById("monster").innerHTML += "_";
   }
-	}
-	if (doElsCollide(correct, box)){
-	  resetall();
-	}
-	if (doElsCollide(bad, box)){
-	  resetall();
-	}
-	if (doElsCollide(bad2, box)){
-	  resetall();
-	}
+		}
 	bad.style.display = "block";
 	bad2.style.display = "block";	
 	correct.style.display = "block";
 }
 function reset(){
-	correct.style.left = Math.floor(Math.random() * (1080 - 120 + 1) + 120) + "px";
-	correct.style.top = Math.floor(Math.random() * (480 - 120 + 1) + 120) + "px";
-	
+	var leftorright=Math.floor(Math.random() * 2) + 1;
+	if (leftorright==1){
+		correct.style.left = Math.floor(Math.random() * (551-280)) + 180 + "px";
+	}else{
+	correct.style.left = Math.floor(Math.random() * (sx-880)) + 671+80 + "px";
+	}
+	correct.style.top = Math.floor(Math.random() * (475-200)) + 130 + "px";
 }
 function resetbad(){
+	var leftorright=Math.floor(Math.random() * 2) + 1;
+	if (leftorright==1){
+		bad.style.left = Math.floor(Math.random() * (551-280)) + 180 + "px";
+	}else{
+	bad.style.left = Math.floor(Math.random() * (sx-880)) + 671+80 + "px";
+	}
 	
-	bad.style.left = Math.floor(Math.random() * (1080 - 120 + 1) + 120) + "px";
-	bad.style.top = Math.floor(Math.random() * (480 - 120 + 1) + 120) + "px";
-	
+	bad.style.top = Math.floor(Math.random() * (475-200)) + 130 + "px";
+
 }
 function resetbad2(){
-	bad2.style.left = Math.floor(Math.random() * (1080 - 120 + 1) + 120) + "px";
-	bad2.style.top = Math.floor(Math.random() * (480 - 120 + 1) + 120) + "px";
+	var leftorright=Math.floor(Math.random() * 2) + 1;
+	if (leftorright==1){
+		bad2.style.left = Math.floor(Math.random() * (551-280)) + 180 + "px";
+	}else{
+	bad2.style.left = Math.floor(Math.random() * (sx-880)) + 671+80 + "px";
+	}
+	bad2.style.top = Math.floor(Math.random() * (475-200)) + 130 + "px";
 	
 }
 function mouseUp() {
@@ -376,8 +405,10 @@ function mouseUp() {
 	  reset();
 	  correct.style.display = "none";
 	   document.getElementById("box").innerHTML = "Correct!";
+	    document.getElementById("monster").innerHTML = "Correct!";
 	  setTimeout(() => {
 		   document.getElementById("box").innerHTML = x;
+		   document.getElementById("monster").innerHTML = x;
 		   resetall();
 }, 2000);
 if (nr < chosemnamount-1){
@@ -389,8 +420,10 @@ else{
 	
 		instruct.innerHTML = "You did it! Good job"+"<br />"+"You made" +"<br />"+klaidukiek+"<br />"+" mistakes!";
 	document.getElementById("box").innerHTML = "Complete";
+		document.getElementById("monster").innerHTML = "Complete";
  setTimeout(() => {
 	 box.style.display = "none";
+	 monster.style.display = "none";
 	 instruct.style.display = "none";
 	 correct.style.display = "none";
 	bad.style.display = "none";
@@ -403,11 +436,14 @@ else{
     if (doElsCollide(bad, box)){
 	  resetbad();
 	  bad.style.display = "none";
-	   var xx =   document.getElementById("box").innerHTML;
+	   var xx = document.getElementById("box").innerHTML;
+	   var xx = document.getElementById("monster").innerHTML;
 	  document.getElementById("box").innerHTML = "Wrong!";
+	  document.getElementById("monster").innerHTML = "Wrong!";
 	  klaidukiek++;
 	  setTimeout(() => {
 		    document.getElementById("box").innerHTML = xx;
+			  document.getElementById("monster").innerHTML = xx;
 }, 2000);
 
   }
@@ -416,9 +452,12 @@ else{
 	  bad2.style.display = "none";
 	 var xx =   document.getElementById("box").innerHTML;
 	  document.getElementById("box").innerHTML = "Wrong!";
+	  var xx =   document.getElementById("monster").innerHTML;
+	  document.getElementById("monster").innerHTML = "Wrong!";
 	  klaidukiek++;
 	  setTimeout(() => {
 		    document.getElementById("box").innerHTML = xx;
+				    document.getElementById("monster").innerHTML = xx;
 }, 2000);	
 
   }
@@ -440,11 +479,11 @@ function initialClick(e) {
 
 }
 doElsCollide = function(correct, box) {
+	
     correct.offsetBottom = correct.offsetTop + correct.offsetHeight;
     correct.offsetRight = correct.offsetLeft + correct.offsetWidth;
     box.offsetBottom = box.offsetTop + box.offsetHeight;
     box.offsetRight = box.offsetLeft + box.offsetWidth;
-    
     return !((correct.offsetBottom < box.offsetTop) ||
              (correct.offsetTop > box.offsetBottom) ||
              (correct.offsetRight < box.offsetLeft) ||

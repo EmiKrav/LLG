@@ -289,40 +289,49 @@ input{
 
 }
 #dogPic{
-  width: 20px;
-  height: 20px;
+ width: 80px;
+  height: 80px;
   position: absolute;
-  background: blue;
-  top: 50px;
-  left: 50px;
+  background-image: url("apple.png");
+  background-size: 80px 80px;
+  background-repeat: no-repeat;
   display: block;
-  font: 14px "Lucida Grande";  /* Set global font size & family */
+  margin-left: -30px;
+  margin-top: -30px;
+font-size: 40px;
+padding-top:25px;
 color: white; /* Set global text color */
 text-align: center;
 user-select: none;
 }
 #badPic{
-  width: 20px;
-  height: 20px;
+    width: 80px;
+  height: 80px;
   position: absolute;
-  background: blue;
-  top: 50px;
-  left: 50px;
+  background-image: url("apple.png");
+  background-size: 80px 80px;
+  background-repeat: no-repeat;
   display: block;
-   font: 14px "Lucida Grande";  /* Set global font size & family */
+  margin-left: -30px;
+  margin-top: -30px;
+font-size: 40px;
+padding-top:25px;
 color: white; /* Set global text color */
 text-align: center;
 user-select: none;
 }
 #badPic2{
-  width: 20px;
-  height: 20px;
+  width: 80px;
+  height: 80px;
   position: absolute;
-  background: blue;
-  top: 50px;
-  left: 50px;
+  background-image: url("apple.png");
+  background-size: 80px 80px;
+  background-repeat: no-repeat;
   display: block;
-   font: 14px "Lucida Grande";  /* Set global font size & family */
+  margin-left: -30px;
+  margin-top: -30px;
+font-size: 40px;
+padding-top:25px;
 color: white; /* Set global text color */
 text-align: center;
 user-select: none;
@@ -342,15 +351,29 @@ strong {
 }
 
 #box {
-  width: 200px;
-   height: 30px;
-  border: 5px solid green;
-  text-align: center;
-  align-content: center;
-  top: 100%;
-  left: 50%;
+  width: 120px;
+   height: 130px;
   position: absolute;
-  top: 300px; left: 500px;
+  top: calc(52vh + 50px);
+  left: calc(40vw + 39px);
+    border: none;
+	color: transparent;
+	user-select: none;
+}
+#monster{
+	display:block;
+  width: 200px;
+   height: 250px;
+  position: absolute;
+  top: 50vh; 
+  left: 40vw;
+  background-image: url("logo.png");
+  background-size: 200px 180px;
+  background-position-y: 35px;
+  background-repeat: no-repeat, repeat;
+  border: none;
+  font-size: 30px;
+  user-select: none;
 }
 #statusmsg{
 
@@ -364,126 +387,156 @@ strong {
 
 }
 #cosship{
-  width: 20px;
-  height: 20px;
+  width: 60px;
+  height: 100px;
   position: absolute;
-  background: blue;
-  top: 50px;
+  margin-top: -100px;
   left: 50px;
   display: block;
-  font: 14px "Lucida Grande";  /* Set global font size & family */
-color: white; /* Set global text color */
-text-align: center;
 user-select: none;
+background-image: url("rocket.png");
+background-size: 60px 100px;
+  background-repeat: no-repeat, repeat;
 }
 #asteroid{
-  width: 20px;
-  height: 20px;
+  width: 50px;
+  height: 80px;
   position: absolute;
-  background: blue;
   top: 50px;
   left: 50px;
   display: block;
-  font: 14px "Lucida Grande";  /* Set global font size & family */
-color: white; /* Set global text color */
-text-align: center;
 user-select: none;
+background-image: url("asteroid.png");
+background-size: 50px 80px;
+  background-repeat: no-repeat, repeat;
 }
 #asteroid2{
-  width: 20px;
-  height: 20px;
+  width: 50px;
+  height: 80px;
   position: absolute;
-  background: blue;
   top: 50px;
   left: 50px;
   display: block;
-  font: 14px "Lucida Grande";  /* Set global font size & family */
-color: white; /* Set global text color */
-text-align: center;
 user-select: none;
+background-image: url("asteroid.png");
+background-size: 50px 80px;
+  background-repeat: no-repeat, repeat;
 }
 #asteroid3{
+    width: 50px;
+  height: 80px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  display: block;
+user-select: none;
+background-image: url("asteroid.png");
+background-size: 50px 80px;
+  background-repeat: no-repeat, repeat;
+}
+#bullet{
   width: 20px;
   height: 20px;
   position: absolute;
-  background: blue;
   top: 50px;
   left: 50px;
   display: block;
-  font: 14px "Lucida Grande";  /* Set global font size & family */
-color: white; /* Set global text color */
-text-align: center;
 user-select: none;
+background-image: url("bullet.png");
+background-size: 20px 20px;
+  background-repeat: no-repeat, repeat;
 }
-#bullet{
-  width: 10px;
-  height: 10px;
-  position: absolute;
-  background: red;
-  top: 50px;
-  left: 50px;
-  display: block;
-  font: 14px "Lucida Grande";  /* Set global font size & family */
-color: white; /* Set global text color */
-text-align: center;
-user-select: none;
+
+#bullet {
+  -webkit-animation-name: rotate;
+  -webkit-animation-duration:1s;
+  -webkit-animation-iteration-count:infinite;
+  -webkit-animation-timing-function:linear;
+  -moz-animation-name: rotate;
+  -moz-animation-duration:1s;
+  -moz-animation-iteration-count:infinite;
+  -moz-animation-timing-function:linear;
+}
+
+@-webkit-keyframes rotate {
+  from {-webkit-transform:rotate(0deg);}
+  to {  -webkit-transform:rotate(360deg);}
+}
+
+@-moz-keyframes rotate {
+  from {-moz-transform:rotate(0deg);}
+  to {  -moz-transform:rotate(360deg);}
 }
 #wordbox {
-	
- border: 5px solid green;
+ border: 5px solid white;
   text-align: center;
   align-content: center;
   position: absolute;
   top: 15%; left: 96%;
-  font: 30px "Lucida Grande";  /* Set global font size & family */
-
+  font-size: 30px;
+color: white;
    writing-mode: vertical-lr;
   text-orientation: upright;
+  border-radius: 15px;
+}
+#console2{
+	display:block;
+	margin-left: 95vw;
+		height: 86.5vh;
+	width: 5vw;
+  background-repeat: no-repeat, repeat;
+   background-image: url("console.jpg");
 }
 #mytext{
-	 width: 100px;
+	 width: 50px;
 	 text-align: center;
   align-content: center;
-   background: grey;
+   background: rgba(0,0,0,0);
+   color: white;
   position: absolute;
-  top: 90%; left:1%;
-  font: 30px "Lucida Grande";  /* Set global font size & family */
+  top: 86vh; left:3vw;
+  font-size: 30px;
+  border: solid white;
+   border-radius: 10px;
+}
+#mytext:focus {
+    outline: 3px solid white;
 }
 #wordbox2 {
-	
- border: 5px solid blue;
+	color: white;
+ border: 5px solid white;
   text-align: center;
   align-content: center;
   position: absolute;
   top: 15%; left: 1%;
-  font: 30px "Lucida Grande";  /* Set global font size & family */
-
+  font-size: 30px;
+    border-radius: 15px;
    writing-mode: vertical-lr;
   text-orientation: upright;
 }
 #wordbox3 {
-	
- border: 5px solid blue;
+	color: white;
+ border: 5px solid white;
   text-align: center;
   align-content: center;
   position: absolute;
   top: 15%; left: 5%;
-  font: 30px "Lucida Grande";  /* Set global font size & family */
-
+  font-size: 30px;
+border-radius: 15px;
    writing-mode: vertical-lr;
   text-orientation: upright;
 }
 #wordbox4 {
-	
- border: 5px solid blue;
+	color: white;
+ border: 5px solid white;
   text-align: center;
   align-content: center;
   position: absolute;
   top: 15%; left: 9%;
-  font: 30px "Lucida Grande";  /* Set global font size & family */
-
+  font-size: 30px;
    writing-mode: vertical-lr;
   text-orientation: upright;
+  border-radius: 15px;
 }
 
 
@@ -671,4 +724,17 @@ user-select: none;
 }
 #pasmyg:hover {
   color: blue;
+}
+
+#cosmos{
+background-image: url("cosmos.jpg");
+background-size: 100vw 100vh;
+  background-repeat: no-repeat, repeat;
+}
+#console{
+	height: 86.5vh;
+	width: 13vw;
+background-image:	url("console.jpg");
+background-size: 100vw 100vh;
+  background-repeat: no-repeat, repeat;
 }

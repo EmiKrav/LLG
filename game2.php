@@ -11,7 +11,6 @@
 </head>
 
 <body>
-
            <?php 
 		   
 		   $servername = "localhost";
@@ -60,14 +59,14 @@ while($row2 = mysqli_fetch_array($result3, MYSQLI_ASSOC)){
 	
 
        
- <form action="" method="post">
- <div class="register-forget opacity" style="margin-top:20px;margin-right:10px ">
+ <form action="" method="post" >
+ <div class="register-forget opacity" style="margin-top:20px;margin-right:10px " >
  </div>
 			 <input class="register-forget opacity"  style="float: left;background-color: white;margin-left:5%;width:10%"id="register-forgetbutton" 
 			 type="submit"  name="button1" value="Back" />
 				 </form>
 				 <input class="register-forget opacity" style="float: left; width:10%;margin-left:85%;background-color: white;margin-top:-64px;"
-				 type="submit" onclick = "displayblock()"   id="register-forgetbutton" name="buttonstart" value="Start"/> 
+				 type="submit" onclick = "displayblock()"   id="register-forgetbutton" name="buttonstart" value="Start"/>
 
 
     </div>
@@ -81,11 +80,11 @@ while($row2 = mysqli_fetch_array($result3, MYSQLI_ASSOC)){
 	<div style="user-select: none" id="wordbox3" ></div>
 	<div style="user-select: none" id="wordbox4" ></div>
 	<input type="text" maxlength="1" id="mytext" value="">
-	<h1 id="instruct" style="user-select: none">How to play: <br> Type your answer (A/B/C) in the grey box<br> Move ship with arrow keys <br> Shoot asteroids with space key</h1>
-	<div class="login-container" style="margin-left:35%">
+	<h1 id="instruct" style="user-select: none">How to play: <br> Type your answer (A/B/C) in the box<br> Move ship with arrow keys <br> Shoot asteroids with space key</h1>
+	<div class="login-container" style="margin-left:35%" >
 	
-<form method="POST" >
-		<p>
+<form method="post" >
+		<p >
 		
 	 <label for="wordamount" id="wordamountl" style="margin-left:40%">Words:</label>
 	 </p>
@@ -96,7 +95,7 @@ while($row2 = mysqli_fetch_array($result3, MYSQLI_ASSOC)){
 <div class="dropdowna">
   <button onclick="myFunction()" class="dropbtna" style="width:69%; margin-left:15%"  id="pavad">Category</button>
  
-  <div id="myDropdowna" style=" margin-left:15%"  class="dropdown-content">
+  <div id="myDropdowna" style=" margin-left:15%;overflow-x:auto;overflow-y:scroll;height: 100px;"  class="dropdown-content">
  
     <input type="text"  class="input" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
 	<script>
@@ -146,7 +145,7 @@ $exist= "SELECT word as 'word', translation as 'translation', word_tags.word_id 
 FROM ((words
 INNER JOIN word_tags ON words.word_id=word_tags.word_id)
 INNER JOIN tags ON tags.tag_id = word_tags.tag_id)
-WHERE IF($svarbu=1, tags.tag_id = $idintifikacija, tags.tag_id>0);";
+WHERE IF($svarbu=1, tags.tag_id = $idintifikacija, tags.tag_id>0) ORDER BY RAND();";
 
 $resultjs2 = mysqli_query($conn, $exist);
 while($row = mysqli_fetch_array($resultjs2, MYSQLI_ASSOC)){
@@ -229,10 +228,14 @@ function filterFunction() {
 
 </script>
 </div>
-  
 </div>
 </div>
+ <div id="console" style="display:none">
+ <div id="console2" style="display:none">
+</div>
+ </div>
 </body>
+
  <script type="text/javascript">
         function preventBack() {
             window.history.forward();
@@ -304,18 +307,24 @@ zodis.style.display = "none";
 
 var klaidukiekis=0;
 function displayblock(){
+	document.getElementsByTagName('body')[0].setAttribute('id', "cosmos");
+	document.getElementById("wordamount").style.display="none";
+	document.getElementById("wordamountl").style.display="none";
+	document.getElementById("pavad").style.display="none";
+	document.getElementById("console").style.display="block";
+	document.getElementById("console2").style.display="block";
+	instruct.style.display = "none";
+		  setTimeout(() => {
+
 	tekstas.addEventListener("input", updateValue);
 	function updateValue(e) {
   tekstas.value = e.target.value.toUpperCase();
 }
-	document.getElementById("wordamount").style.display="none";
-	document.getElementById("wordamountl").style.display="none";
-	document.getElementById("pavad").style.display="none";
+	
 	if(document.getElementById("wordamount").value < 1){
 	document.getElementById("wordamount").value = document.getElementById("wordamount").max;
 	chosemnamount = document.getElementById("wordamount").value;
 	}
-	instruct.style.display = "none";
 	answers();
 	vert0.style.display = "block";
 	vert1.style.display = "block";
@@ -407,7 +416,7 @@ function moving(e) {
 	if ((tekstasv == "A" || tekstasv == "B" || tekstasv == "C") && nr == 0){
 	nr = 1;
   bullet.style.display = "block";
-  bullet.style.left =  rect.x  + 5 + "px";
+  bullet.style.left =  rect.x  + 25 + "px";
 	bullet.style.top = rect.y - 10 + "px";
 	movebullet();
 	}
@@ -500,7 +509,7 @@ function frame2() {
 }, 1000);	
 	 
     }
-    else if (pos >= window.innerHeight - 50) {
+    else if (pos >= window.innerHeight - 80) {
 	 ca = true;
 	 ast1.style.display = "none";
 	 resetaster();
@@ -529,7 +538,7 @@ function frame3() {
 			
 }, 1000);
     }
-	  else if (pos >= window.innerHeight - 50) {
+	  else if (pos >= window.innerHeight - 80) {
 	 ca2 = true;
 	 ast2.style.display = "none";
 	 resetaster2();
@@ -557,7 +566,7 @@ function frame4() {
 			
 }, 1000);
     }
-	 else if (pos >= window.innerHeight - 50) {
+	 else if (pos >= window.innerHeight - 80) {
 	 ca3 = true;
 	 ast3.style.display = "none";
 	 resetaster3();
@@ -609,7 +618,12 @@ else{
 	ca = false;
 	ca2 = false;
 	ca3 = false;
-	
+	document.getElementById("console").style.display= "none";
+	document.getElementById("console2").style.display= "none";
+	vert0.style.display = "none";
+	vert1.style.display = "none";
+	vert2.style.display = "none";
+	document.getElementById("mytext").style.display= "none";
 	ast1.style.display = "none";
 	ast2.style.display = "none";
 	ast3.style.display = "none";
@@ -667,6 +681,7 @@ else{
 	vert2.innerHTML = "C-" + words[rw];
 }
 }
+}, 100);
 }
 </script>
 	

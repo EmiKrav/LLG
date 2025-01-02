@@ -4,26 +4,19 @@
 
 <head>
 
-    <title>Sign up</title>
+    <title>Registration Done</title>
 <!-- Write your comments here <link href="css/style.css?key=<?php echo time(); ?>" type="text/css" rel="stylesheet" />--> 
     <link href="css/style.css?key=<?php echo time(); ?>" type="text/css" rel="stylesheet" />
 
 </head>
 
 <body>
-
-    <div id="header">
-
-        <h3>Sign up</h3>
-
-    </div>
      
-
-    <div id="wrap">
-    
-        <h3>Signup Form</h3>
-
-       
+<section class="container" >
+<div class="login-container" >
+<form action="" method="post" class="form-container" style="margin-right:30px;">
+	<h1 class="opacity">Registration Done</h1>
+		<p class="opacity">
                  <?php 
 
     
@@ -33,16 +26,14 @@
         function button1() {
            header('Location: index.php');
         }
-
+echo "Registration done, check email";
 ?>
 
- <p>Registration done, check email</p>
-        <form action="" method="post">
-
+    
 			<p>
            
 			 <input type="submit" name="button1"
-                id = "btn" value="Log In" />
+                id="register-forgetbutton"  value="Log In" />
 			</p>
 
         </form>
