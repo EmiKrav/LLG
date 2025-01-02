@@ -66,7 +66,7 @@ while($row2 = mysqli_fetch_array($result3, MYSQLI_ASSOC)){
 	<div id="dogPic"></div>
 	<div id="badPic"></div>
 	<div id="badPic2"></div>
-	<h1 id="instruct" style="user-select: none;">How to play: <br> Drag cube with correct letter to the box </h1>
+	<h1 id="instruct" style="user-select: none;">How to play: <br> Drag apple with correct letter to the monster </h1>
 	<div class="login-container" style="margin-left:35%">
 	
 			<form method="POST">
